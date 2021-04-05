@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.2. A blueprint for conducting supervised learning problems &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3. Tree based models" href="03_03_tree_models.html" />
+    <link rel="prev" title="2.1. Baseline algorithms" href="03_01_baseline_algorithms.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="03_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_01_baseline_algorithms.html">
+     2.1. Baseline algorithms
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.2. A blueprint for conducting supervised learning problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_03_tree_models.html">
+     2.3. Tree based models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/03_02_blueprint_supervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/03_02_blueprint_supervised_learning.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/03_02_blueprint_supervised_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-hot-encoding-and-scaling">
+   2.2.1. One-Hot Encoding and Scaling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-values">
+   2.2.2. Missing Values
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#univariate-imputation">
+     2.2.2.1. Univariate imputation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multivariate-imputation">
+     2.2.2.2. Multivariate imputation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#split-your-data">
+   2.2.3. Split Your Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     2.2.3.1. Cross validation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-performance">
+   2.2.4. Model Performance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identification-and-handling-of-under-and-overfitting">
+   2.2.5. Identification and Handling of Under- and Overfitting
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="a-blueprint-for-conducting-supervised-learning-problems">
+<h1><span class="section-number">2.2. </span>A blueprint for conducting supervised learning problems<a class="headerlink" href="#a-blueprint-for-conducting-supervised-learning-problems" title="Permalink to this headline">¶</a></h1>
+<p>So far, we only talked about models for analyzing data. Obviously, data analysis consists of much more. This section is dedicated to provide a generalized structure how to conduct a full data analysis with the use of supervised learning. However, the procedure discussed should be regarded as a minimal standard which must be extended for more sophisticated and comprehensive analyses.</p>
+<p>An analysis starts with data collection which strongly depends on the task and the environment you are working in. For instance, you may get instructions which data to collect for an analysis in the scope of your studies. Later, the data collection does strongly depend on the industry in which you are working. Of course, also the access you have or do not have strongly impacts the process of data collection. Once you get access to a data set, it is very unlikely that is is already in the shape which you need for the method of your choice. Thus, data preparation is needed which typically includes <strong>encoding</strong> and <strong>scaling</strong> of variables and the handling of missing values. Before the analysis starts, the data set is typically split into two or three data sets, i.e., <strong>training</strong>, <strong>validation</strong> and <strong>test</strong> data. Usually, the model is fitted with training data, hyperparameters are selected based on the validation sample and model performance is evaluated with test data. As stated earlier, it only makes sense to make inferences based on our model if it generalizes and works with new and unseen data. This is why we need data (test data) which was not used during model estimation for evaluation which is conducted on the basis of appropriate performance metrics.</p>
+<div class="section" id="one-hot-encoding-and-scaling">
+<h2><span class="section-number">2.2.1. </span>One-Hot Encoding and Scaling<a class="headerlink" href="#one-hot-encoding-and-scaling" title="Permalink to this headline">¶</a></h2>
+<p>Categorical variables are often provided in non-numerical format (“bad”, “good”, “don’t care”) and therefore need to be converted to a numerical format. A convenient way to do so, is given by <strong>one-hot encoding</strong> which is conducted by generating of a feature vector with a dimension which equals the number of categories. All values in the feature vector are equal to zero except one value which is equal to one at a fixed position which represents a certain category, e.g.:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{bad} = [1, 0, 0]\\
+\text{good} = [0, 1, 0]\\
+\text{don't care} = [0, 0, 1]\\
+\end{align}
+\end{split}\]</div>
+<p>If variables are in quantitative format, we typically convert them to the same scale. This is mainly due to two reasons. (1) Comparability: Having all variables in the same range makes it easier to analyze the effect size of each variable on the target variable. (2) Computational stability: Estimation methods, or more concretely, computers can run into numerical problems if numerical values are very small or very big.</p>
+<p><strong>Normalization</strong> and <strong>standardization</strong> can be used to bring variables to the same range. If we normalize a variable, we convert it from its original range to a fixed range <span class="math notranslate nohighlight">\([a, b]\)</span>. This can be done by:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{ij}^{*} = a + \frac{x_{ij} - x_{ij}^{\min}}{x_{ij}^{\max} - x_{ij}^{\min}} \cdot (b - a)
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(x_{ij}\)</span> as the realization of the random variable and <span class="math notranslate nohighlight">\(x_{ij}^{\min}, x_{ij}^{\max}\)</span> as the smallest and highest observations in the data set. In comparison, standardization is done by:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{ij}^{*} = \frac{x_{ij} - \hat{\mu}_{j}}{\hat{\sigma}_{j}}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\hat{\mu}_{j}, \hat{\sigma}_{j}\)</span> representing empirical estimates for the mean and standard deviation of feature variable <span class="math notranslate nohighlight">\(j\)</span>. After standardization, the feature variable has an expected value of zero and a standard deviation of one. There is no general rule if normalization or standardization should be preferred. If possible, you may want to try both.</p>
+<p>Luckily, the Python scikit package offers a variety of data preprocessing methods. Let us take a look at some examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="c1">#example data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;bad&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;good&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;do not care&#39;</span><span class="p">]]</span>
+
+<span class="c1">#define the encoder</span>
+<span class="n">encode</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
+
+<span class="c1">#fit the encoder, this means it learns how many different categories occur</span>
+<span class="n">encode</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#transform from string to one-hot-vector</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">encode</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;One-hot encoding&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Encoded data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#example data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#define a normalizer, note: Normalization in the scikit package refers to scaling to unit-norm</span>
+<span class="c1">#what we defined as normalization is called min-max-scaling in the scikit package</span>
+<span class="n">minmax</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#fit the scaler to the data</span>
+<span class="n">minmax</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#transform to the specified range</span>
+<span class="n">X_normalized</span> <span class="o">=</span> <span class="n">minmax</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normalization&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normalized data with a range [-1, 1]:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_normalized</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1">#define a standard scaler</span>
+<span class="n">standard</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1">#fit the scaler to the data</span>
+<span class="n">standard</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#standardize</span>
+<span class="n">X_standard</span> <span class="o">=</span> <span class="n">standard</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standardization&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standardized data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_standard</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------
+One-hot encoding
+--------------------------------------------------
+Original data:
+[[&#39;bad&#39;], [&#39;good&#39;], [&#39;do not care&#39;]]
+
+Encoded data:
+[[1. 0. 0.]
+ [0. 0. 1.]
+ [0. 1. 0.]]
+
+
+--------------------------------------------------
+Normalization
+--------------------------------------------------
+Original data:
+[[-5.        ]
+ [-3.88888889]
+ [-2.77777778]
+ [-1.66666667]
+ [-0.55555556]
+ [ 0.55555556]
+ [ 1.66666667]
+ [ 2.77777778]
+ [ 3.88888889]
+ [ 5.        ]]
+
+Normalized data with a range [-1, 1]:
+[[-1.        ]
+ [-0.77777778]
+ [-0.55555556]
+ [-0.33333333]
+ [-0.11111111]
+ [ 0.11111111]
+ [ 0.33333333]
+ [ 0.55555556]
+ [ 0.77777778]
+ [ 1.        ]]
+--------------------------------------------------
+Standardization
+--------------------------------------------------
+Original data:
+[[-5.        ]
+ [-3.88888889]
+ [-2.77777778]
+ [-1.66666667]
+ [-0.55555556]
+ [ 0.55555556]
+ [ 1.66666667]
+ [ 2.77777778]
+ [ 3.88888889]
+ [ 5.        ]]
+
+Standardized data:
+[[-1.5666989 ]
+ [-1.21854359]
+ [-0.87038828]
+ [-0.52223297]
+ [-0.17407766]
+ [ 0.17407766]
+ [ 0.52223297]
+ [ 0.87038828]
+ [ 1.21854359]
+ [ 1.5666989 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Most of the time, data sets will contain categorical and quantitative variables. Encoding and scaling can be conducted at the same time by help of the <em>column transformer</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1">#create an artificial data set</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;bad&#39;</span><span class="p">,</span> <span class="s1">&#39;do not care&#39;</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">#create quantiative variables</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">#make a dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">x2</span><span class="p">,</span> <span class="s1">&#39;x3&#39;</span><span class="p">:</span> <span class="n">x3</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is our data set:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1">#with the colum transformer, we can define which variables are categorical and which</span>
+<span class="c1">#are quantitative; together with the scaler, we can conduct encoding and scaling at once</span>
+
+<span class="c1">#define categorical and quantitative variables by column name</span>
+<span class="n">categorical_variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span>
+<span class="n">numerical_variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;x3&#39;</span><span class="p">]</span>
+
+<span class="c1">#define the transformer function we want to use</span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
+<span class="n">numerical_transformer</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1">#define the preprocessor</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_variables</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;numerical&#39;</span><span class="p">,</span> <span class="n">numerical_transformer</span><span class="p">,</span> <span class="n">numerical_variables</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1">#fit the preprocessor to data</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1">#transform the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is the encoded and standardized data set:&#39;</span><span class="p">)</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is our data set:
+            x1        x2        x3
+0         good -5.000000  2.771715
+1  do not care -3.888889  0.211086
+2         good -2.777778 -0.256268
+3          bad -1.666667  2.079355
+4          bad -0.555556  0.942499
+5          bad  0.555556  5.085927
+6          bad  1.666667  0.005081
+7          bad  2.777778  5.540403
+8  do not care  3.888889  4.489668
+9         good  5.000000  3.235059
+
+This is the encoded and standardized data set:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.        ,  0.        ,  1.        , -1.5666989 ,  0.17609493],
+       [ 0.        ,  1.        ,  0.        , -1.21854359, -1.0720672 ],
+       [ 0.        ,  0.        ,  1.        , -0.87038828, -1.299876  ],
+       [ 1.        ,  0.        ,  0.        , -0.52223297, -0.16139155],
+       [ 1.        ,  0.        ,  0.        , -0.17407766, -0.7155446 ],
+       [ 1.        ,  0.        ,  0.        ,  0.17407766,  1.30414314],
+       [ 1.        ,  0.        ,  0.        ,  0.52223297, -1.17248268],
+       [ 1.        ,  0.        ,  0.        ,  0.87038828,  1.52567441],
+       [ 0.        ,  1.        ,  0.        ,  1.21854359,  1.01350039],
+       [ 0.        ,  0.        ,  1.        ,  1.5666989 ,  0.40194917]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="missing-values">
+<h2><span class="section-number">2.2.2. </span>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this headline">¶</a></h2>
+<p>It often occurs that some values for certain variables are not available in a data set. These values are marked by blank spaces, “NA”, “NaN” or other placeholders. By default, most of the models are not able to handle missing values by themselves which is why the user needs to decide what should be done. Again, there is no specific rule, what is best in this context. If only a very few observations are affected by missing values, it might be a good idea to remove the rows of these observations. Given this reduces the data set to a high extent, it should be considered to make use of data imputation techniques which means to replace missing values by certain numbers or categories. In general, one can distinguish between univariate and multivariate imputation techniques. The former replaces missing values by another value which is deduced from existing observations of the variable, only, while the latter deduces values with information of all the remaining variables.</p>
+<div class="section" id="univariate-imputation">
+<h3><span class="section-number">2.2.2.1. </span>Univariate imputation<a class="headerlink" href="#univariate-imputation" title="Permalink to this headline">¶</a></h3>
+<p>If we use univariate imputation, we replace a missing value by another metric which is derived from the remaining observations of the variable. For instance missing values can be replaced by the average or the empirical median of the observations:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{\cdot j}^{\text{new}} \leftarrow \frac{1}{\# \lbrace \boldsymbol{x}_{j}\rbrace} \sum_{i = 1...,l-1,l+1,...}^m x_{ij}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_{\cdot j}^{\text{new}} \leftarrow \hat{F}_{0.50}^{-1} \left(x_{ij}^{\text{observed}} \right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\# \lbrace \boldsymbol{x}_{j}\rbrace\)</span> stand for the number of observable values for feature <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(\hat{F}\)</span> for the empirical distribution function which is based on observable value for feature <span class="math notranslate nohighlight">\(j\)</span>. Another technique would be to interpolate missing values. If we want to impute missing values categorical variables, replacement by the most frequent category of observations may be chosen.</p>
+</div>
+<div class="section" id="multivariate-imputation">
+<h3><span class="section-number">2.2.2.2. </span>Multivariate imputation<a class="headerlink" href="#multivariate-imputation" title="Permalink to this headline">¶</a></h3>
+<p>If we use multivariate imputation, we treat the variable with missing values <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> as the target variable and use the remaining variables <span class="math notranslate nohighlight">\(\left(\boldsymbol{x}_1, ..., \boldsymbol{x}_{j - 1}, \boldsymbol{x}_{j + 1}, ..., \boldsymbol{x}_n \right)\)</span> for predicting <span class="math notranslate nohighlight">\(\boldsymbol{\hat{x}}_j\)</span>. Those predictions can be used to replace missing values. Different model types which are suited for scale of <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> can be used for prediction. In practice, missing values can occur for different features. In this case prediction models are estimated for each feature (column) every time and replacements by predictions are used for the prediction model of the next column. To ensure stability of all estimated replacements, this process is iteratively repeated for a fixed number of rounds.</p>
+<p>As you can see in the code below, imputation of missing values can easily be implemented with the help of scikit impute methods. However, imputation should be treated with care. If it is not too computationally intensive, it is helpful to conduct the same analysis with different types of imputation and examine how sensitive results are with respect to varying methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="c1">#draw random observations</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#replace the second, fifth and seventh observation with a missing value</span>
+<span class="n">nan_index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nan_index</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    
+<span class="c1">#define the univariate imputer, strategy defines the metric which is used for replacement</span>
+<span class="c1">#set strategy to most_frequent for categorical variables</span>
+<span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+
+<span class="c1">#fit the imputer, this means: the empirical mean is calculated from observed data</span>
+<span class="n">imp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x before imputation&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x after imputation&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;imputationn can also be applied to other arrays with missing values&#39;</span><span class="p">)</span>
+<span class="n">x_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_other</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;after imputation but replacement is based on data of the first array&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_other</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x before imputation
+[[ 2.33908963]
+ [        nan]
+ [-1.71157844]
+ [ 1.19971633]
+ [        nan]
+ [ 1.41873392]
+ [        nan]
+ [ 1.34312663]
+ [ 1.68455642]
+ [-2.82739867]]
+
+x after imputation
+[[ 2.33908963]
+ [ 0.49232083]
+ [-1.71157844]
+ [ 1.19971633]
+ [ 0.49232083]
+ [ 1.41873392]
+ [ 0.49232083]
+ [ 1.34312663]
+ [ 1.68455642]
+ [-2.82739867]]
+
+imputationn can also be applied to other arrays with missing values
+[[nan]
+ [1.2]
+ [nan]]
+
+after imputation but replacement is based on data of the first array
+[[0.49232083]
+ [1.2       ]
+ [0.49232083]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_iterative_imputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">IterativeImputer</span>
+
+<span class="c1">#create an artificial data set</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">#make a dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">x2</span><span class="p">})</span>
+
+<span class="n">nan_index</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">nan_index</span><span class="p">:</span> 
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">ind</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is our data set from before but with missing values:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1">#define the multivariate imputer</span>
+<span class="n">imp</span> <span class="o">=</span> <span class="n">IterativeImputer</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#fit to data</span>
+<span class="n">imp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is our data set after multivariate imputation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;Note: Multivariate imputation with categorical and quantitative variables </span>
+<span class="s1">is currently not implemented, but may be available in the future&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is our data set from before but with missing values:
+         x1        x2
+0 -5.000000  0.099650
+1 -3.888889       NaN
+2       NaN  3.284403
+3 -1.666667  4.006840
+4       NaN  2.194105
+5  0.555556  4.757418
+6  1.666667  1.699864
+7  2.777778       NaN
+8  3.888889  2.055770
+9  5.000000  2.218116
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is our data set after multivariate imputation:
+[[-5.          0.09964997]
+ [-3.88888889  2.53514742]
+ [ 0.41731211  3.28440264]
+ [-1.66666667  4.00684013]
+ [ 0.41642672  2.19410499]
+ [ 0.55555556  4.75741849]
+ [ 1.66666667  1.69986409]
+ [ 2.77777778  2.54155733]
+ [ 3.88888889  2.05577048]
+ [ 5.          2.21811642]]
+
+Note: Multivariate imputation with categorical and quantitative variables 
+is currently not implemented, but may be available in the future
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="split-your-data">
+<h2><span class="section-number">2.2.3. </span>Split Your Data<a class="headerlink" href="#split-your-data" title="Permalink to this headline">¶</a></h2>
+<p>Before, we start to fit the model, data is divided into three subsets: <strong>training data</strong>, <strong>validation data</strong>, <strong>test data</strong>. Training data is used to estimate model parameters, validation data is used to compare different models or the same model with different hyperparameters, test data is used to derive the model performance with estimated parameters and fixed hyperparameters. Usually, a high proportion is used for training. Fractions in the range between 60%-80% are common. Remaining data is equally split for validation and testing.</p>
+<p>It is important that models work for new data. If this is the case it indicates a certain degree of generalization of our model which is our need when we want to make inferences about economic and financial regularities. To verify this, test data is used and it is important that test as well as validation data does not include data from the training set.</p>
+<p>If you search for examples, you will often find that partitioning the subsets is done by drawing observations randomly from the overall data set. This comes along with the assumption that observations in the data set are independent from another. For most of the financial applications, this assumption is not true. For instance, take a look at the evolution of stock market prices or at economic cycle of the macro economy. You will see that to a certain degree patters repeat. Breaking data randomly may come along with biased inferences from the data. Given temporal dependence, randomly drawing of data subsets may lead to situations in which information from the future is used to learn about the past. Furthermore, if we randomly draw training data our predictions will be made as if independence over time is given. If this is not the case, predictions can be biased for non-randomized observations in the future. Or, assume your model works well for upswings but does not provide good predictions for periods of downturn and deterioration. Validation results of randomized subsets may average this performance, while in reality your model will totally fail during some periods.</p>
+<p>Accordingly, the best way to split data is by obtaining the natural temporal dependence structure in the subsets and by taking care that validation and testing data really does not include any information from test data, not even by indirect channels. For instance, assume today’s stock market price is correlated with the stock market price five days ago. If we split data in between this five day period, information from the test data would be included in the validation data by this correlation over time. Overall, it can be very challenging to find appropriate ways for deriving appropriate time steps which are used for splitting the data in the presence of temporal dependence. For a start, we will split data without randomization and may discard some values at the end of the training and at the beginning of validation data. If we have reasonable assumptions regarding typical cyclical pattern length in the data, the split size should be a multiple of this length.</p>
+<div class="section" id="cross-validation">
+<h3><span class="section-number">2.2.3.1. </span>Cross validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>Instead of simply splitting data once, it is in some way repeatedly done sometimes for mainly two reasons. First, to ensure that model estimation and validation results do not depend on a specific split of the data. Second, data sets can be small and splitting data is costly in a way that a certain fraction of the data is not used for learning and training.</p>
+<p>For independent data, cross validation is most often found in the form of <span class="math notranslate nohighlight">\(k\)</span>-fold cross validation. This means, the data set is folded into subsets of equal size. For <span class="math notranslate nohighlight">\(k\)</span> times, the model is estimated by data of the <span class="math notranslate nohighlight">\(k-1\)</span> subsets and evaluated on the remaining subset. Model performance is analyzed on the basis of average performance over <span class="math notranslate nohighlight">\(k\)</span> performance results of this process.</p>
+<p>Again, this procedure is very tricky in the presence of temporal dependence. It might only work well in the same fashion, if we succeed in dividing the data into subsets with equal temporal structure, e.g., whole economic cycles. Another approach might lie in successively padding data over time. For instance, we start with a certain period <span class="math notranslate nohighlight">\(t = 1, ..., t^{*}\)</span> to estimate the model and use the <span class="math notranslate nohighlight">\(t_k\)</span> observations in the future for validation. For further test-validation splits we increase <span class="math notranslate nohighlight">\(t^{*}\)</span> with a certain step size and again use <span class="math notranslate nohighlight">\(t_k\)</span> future observations for validation. This procedure comes with some unpleasant statistical attributes, i.e., due to increasing test data sizes, performance metrics of validation sets are prone to varying levels of variance in prediction estimators. However, with this procedure we use the highest number of observations for training and retain the temporal structure.</p>
+</div>
+</div>
+<div class="section" id="model-performance">
+<h2><span class="section-number">2.2.4. </span>Model Performance<a class="headerlink" href="#model-performance" title="Permalink to this headline">¶</a></h2>
+<p>So far, we only talked about how to prepare data and how to estimate the model. But how do we evaluate if the results we observe indicate good or poor model performance?</p>
+<p>At this point, it might help to look back at loss functions which were used to estimate the model. The smaller the value of the loss function, the better the model is adjusted to the training data. Accordingly, small values indicates resemblance between real life observations and predictions from the modeling world. However, as stated in the last subsection, this should true not only for the training, but also for validation and especially for test data. But, the metric itself, i.e., the way we calculate the loss can be used as a quantitative measure to compare different models and to analyze if performance of training and validation/test data is similar on a relative scale.</p>
+<p>In the center of model performance is always the target variable and depending on its nature (metric, categorical) an appropriate performance measure should be chosen. For metric target variables, the average squared deviation between target observations and predictions is the first possibility which can be used to measure performance of a model - this is the <strong>mean squared error (MSE)</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+MSE = \frac{1}{n} \sum_i (y_i - \hat{y}_i)^2
+\]</div>
+<p>While for estimation the squared deviation is preferable due to differentiability over the whole number range, the <strong>mean absolute deviation (MAD)</strong> can also be used to measure performance of metric predictions:</p>
+<div class="math notranslate nohighlight">
+\[
+MAD = \frac{1}{n} \sum_i |y_i - \hat{y}_i|
+\]</div>
+<p>In comparison, the MSE is more sensitive towards larger individual deviations. Depending on your preferences, this can be more or less important to you.</p>
+<p>When evaluating categorical variables, we could also use cross entropy functions for model evaluation. However, this only quantifies how good the probability estimates are. In practice, we are more interested in high quality category prediction and not in high quality probability estimates. This is why on a first level, we may use the <strong>average accuracy (AA)</strong> of predictions. So if we define a variable which is equal to one if the predicted category equals the observed one and zero otherwise:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+acc_i = 
+\begin{cases}
+1 &amp; \text{if } y_i = \hat{y}_i  \\
+0 &amp; \text{else }
+\end{cases}
+\end{split}\]</div>
+<p>average accuracy is derived by:</p>
+<div class="math notranslate nohighlight">
+\[
+AA = \frac{1}{n} \sum_i acc_i
+\]</div>
+<p>AA serves as a broad indicator how well the classification performs. However, we may need a more detailed look at prediction errors, because we various error types can occur. At first, let us focus on the binary classification problem. A perfect model is able to predict an event if it occurs, <span class="math notranslate nohighlight">\(\hat{y}_i = 1= y_i\)</span> which is called a <strong>true positive (TP)</strong>. Positive, because we predict the event will happen and true, because it actually happens. Furthermore, the perfect model predicts no event if it does not occur, <span class="math notranslate nohighlight">\(\hat{y}_i = 0 = y_i\)</span> which is called <strong>true negative (TN)</strong>. Hopefully, you may guess that two things can go wrong. We can predict an event, but nothing happens, a <strong>false positive (FP)</strong> and we can predict no event, but it happens, a <strong>false negative (FN)</strong>. Depending on the problem, the occurrence of FPs and FNs may be of different importance. Thus, a more detailed overview of model performance is illustrated in the confusion matrix:</p>
+<br>
+<table>
+    <tr>
+        <td>   </td>
+        <td> prediction event    </td>
+        <td> prediction no event </td>
+    </tr>
+    <tr>
+        <td> actual event </td>
+        <td> TP </td>
+        <td> FN </td>
+    </tr>
+    <tr>
+        <td> actual no event </td>
+        <td> FP </td>
+        <td> TN </td>
+    </tr>    
+</table>
+<p>To examine the quality of event predictions, we may consider the <strong>true positive rate (TRP)</strong> also called <strong>recall</strong> or <strong>sensitivity</strong> and the <strong>true negative rate (TRN)</strong> also called <strong>selectivity</strong> or <strong>specificity</strong>. The TPR is the ratio of TPs in relation to the number of occurrences, so TPs and FNs:</p>
+<div class="math notranslate nohighlight">
+\[
+TPR = \frac{TP}{TP + FN}
+\]</div>
+<p>The TNR is the ratio of TNs in relation to the number of no occurrences, so TNs and FPs:</p>
+<div class="math notranslate nohighlight">
+\[
+TNR = \frac{TN}{TN + FP}
+\]</div>
+<p>The counterpart to the TPR is the <strong>false positive rate (FPR)</strong> which is 1 - TNR, while the counterpart of the TNR is the <strong>false negative rate (FPR)</strong> which is 1 - TPR. Further which focus on the quality of positive and negative predictions, respectively, are the <strong>positive predicted value (PPV)</strong> also called <strong>precision</strong> and the <strong>negative predicted value (NPV)</strong>. The PPV is the ratio of TPs and the overall number of positive predictions:</p>
+<div class="math notranslate nohighlight">
+\[
+PPV = \frac{TP}{TP + FP}
+\]</div>
+<p>Analogously, the NPV is the ratio of TN in relation to the overall number of negative predictions:</p>
+<div class="math notranslate nohighlight">
+\[
+NPV = \frac{TN}{TN + FN}
+\]</div>
+<p>While one needs to get used to the variety of definitions, a first look at the confusion matrix can be very informative. The higher the numbers on the diagonal, the better. Furthermore, if one number of the off-diagonal elements is significantly higher, you may face a high degree of imbalance in the prediction errors of your model. In these cases, it should be evaluated if this is critical for the task. For instance, in medicine, it is usually worse not to detect a disease if a person is sick (FN) instead of suspecting a disease which in the end can not be confirmed (FP). Accordingly, we would be prefer tests with a low number of FNs, even though higher values of FPs are detected.</p>
+<p>However, if the imbalance of FNs and FPs is not acceptable, one way to deal with it may be given by adjusting the probability threshold <span class="math notranslate nohighlight">\(c\)</span> which divides the two categories. Remember that many classification models to not predict the category, but return a probability <span class="math notranslate nohighlight">\(\pi_i = P(Y_i = 1 | \boldsymbol{X}_i)\)</span>. In general, we would expect a certain behavior of good classification models for decreasing values of <span class="math notranslate nohighlight">\(c\)</span>. Assume we choose a rather high value, e.g., <span class="math notranslate nohighlight">\(c = 0.95\)</span>. As a result we rarely make predictions <span class="math notranslate nohighlight">\(\hat{y}_i = 1\)</span> which decreases the FPR, but at the same time also the TPR. This changes for low values of <span class="math notranslate nohighlight">\(c\)</span> leading to high FPRs and high TPR. The better the model the stronger is this relationship. To examine this behavior visually, the ROC curve is used. It plots displays the FPR against the TPR for decreasing values of <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="c1">#define varying threshold levels</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#placeholders for false-positive-rates and true-positive-rates</span>
+<span class="n">fprs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tprs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#in a loop determine cateogrical predictions given a threshold</span>
+<span class="c1">#and derive fpr and tpr</span>
+<span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">thresholds</span><span class="p">:</span>
+    
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    
+    <span class="n">fpr</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span>
+    <span class="n">tpr</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span>
+    
+    <span class="n">fprs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
+    <span class="n">tprs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fprs</span><span class="p">,</span> <span class="n">tprs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;false-positive-rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;true-positive-rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ROC curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_02_blueprint_supervised_learning_8_0.png" src="../_images/03_02_blueprint_supervised_learning_8_0.png" />
+</div>
+</div>
+<p>To quantify what we see in the ROC curve with one value, the Area under the ROC curve (AUROC) can be determined. If this value is higher than <span class="math notranslate nohighlight">\(0.50\)</span> our model is better than random classification. The higher the value the better the model. If we estimated a model which returns predicted probabilities, the AUROC can be derived using the corresponding function from scikit metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+
+<span class="n">auroc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The AUROC for the model displayed above equals: </span><span class="si">{</span><span class="n">auroc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The AUROC for the model displayed above equals: 0.8164
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analogously, presented metrics and principles of the binary case can be applied to the multi-classification scenario.</p>
+</div>
+<div class="section" id="identification-and-handling-of-under-and-overfitting">
+<h2><span class="section-number">2.2.5. </span>Identification and Handling of Under- and Overfitting<a class="headerlink" href="#identification-and-handling-of-under-and-overfitting" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important tasks when evaluating the model is to identify <strong>under- and overfitting</strong> because this is necessary to evaluate generalization of a model. Underfitting refers to the phenomena of using models which are not complex enough to capture relationships as they exists in reality. Model which underfit are said to have high bias. This means estimates systematically deviate from targets. Easily speaking underfit can be identified by bad model performance of the training data. The origin of underfit can lie in incapability of the model to mimic realistic behavior or in usage of features which are not appropriate to estimate the target variable.</p>
+<p>While nowadays, the former is usually not of a concern, especially in finance, the latter is of high relevance for predicting future market movements. Efficient markets quickly process present information which is almost synchronously transferred to price movements. Accordingly, todays information will not provide any guidance for movements in the future. This makes features which are based on current information rather useless for future predictions. Accordingly, one of the major tasks for professional investors is to find inefficiencies and ways to engineer features from today’s information which, at least to a certain degree, exhibit dependence to future movements. Because in general, if features are independent to the target variable, the fanciest model will fail to generate reliable predictions for the target.</p>
+<p>Overfitting is a phenomenon that  relates to striking model performance for training data and poor performance for validation and test data. The reason for overfitting typically lies in the use of very flexible models which are fitted precisely to the training data, and hereby, loose generality. Especially in finance and economics, real-life observations are often affected by randomness. Imagine economic development is partly driven by deterministic relationships, like more income, more consumption, higher gross domestic product and partly by random events like individual consumption behavior, time of consumption, etc. An overfitting model would not only capture the deterministic part, but also the random part in the data. If new data arrives, the random part will differ which leads to poor predictive performance because the model will make predictions by making use of randomness in the past which by definition will be different to todays randomness. Thus, models that overfit are said to have high variance, which means that predictions will strongly deviate on specific (random) data samples and vary to a high degree for different data samples.</p>
+<p>In the example below you can see three plots. The original model which is illustrated in the middle is a regression model with a second degree polynomial:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i = w_1 X_{i} + w_2 X_{i}^2 + \epsilon_i
+\]</div>
+<p>In the left you can observe that a linear regression model is not able to capture the non-linear dynamics, thus, it underfits. In the right, you can observe the fitted model of a polynomial regression model with eight degrees. As you can see, the estimated values for the target variable are less stable and try to capture rather specific values. This is typical for overfitting models.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="k">def</span> <span class="nf">fit_polynomial</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+
+    <span class="n">lin_mod</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">X_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+
+    <span class="n">lin_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_data</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">X_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x_values</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+    
+    <span class="n">axs</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">lin_mod</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_values</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Polynomial degree:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">beta_0</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">fit_polynomial</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fit_polynomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fit_polynomial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_02_blueprint_supervised_learning_12_0.png" src="../_images/03_02_blueprint_supervised_learning_12_0.png" />
+</div>
+</div>
+<p>How can we handle under- and overfitting? Regarding underfitting it gets easy. Use a more complex model and use better features. However, the latter is nothing we can pick arbitrarily, because in some cases such features may not exist or can not be generated. Regarding overfitting, a list of different methods exists. What they have in common is, that model selection or estimation is somehow sabotaged. For instance:</p>
+<ul class="simple">
+<li><p>Early stopping during estimation</p></li>
+<li><p>Use a less flexible model</p></li>
+<li><p>Use less features or reduce feature dimensionality, respectively</p></li>
+<li><p>Regularization</p></li>
+</ul>
+<p><strong>Regularization</strong> is one of the most common techniques which is why we take a closer look at it. The idea of regularization is to add a term to the estimation loss function which penalized the use of features. As a result, regularized models are more parsimonious, typically with an increase in bias but a decrease in variance of predictions. Two different forms of regularization are common, i.e., L1 and L2, also known as <strong>Lasso</strong> and <strong>Ridge</strong>. Using regularization in combination with a linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i = \boldsymbol{w}^T \boldsymbol{X}_i + b + \epsilon_i
+\]</div>
+<p>the loss function:</p>
+<div class="math notranslate nohighlight">
+\[
+L(\boldsymbol{w}^T, b) = \sum_{i = 1}^m \left( Y_i - \boldsymbol{w}^T \boldsymbol{X}_i - b \right)^2
+\]</div>
+<p>under L1-regularization evolves to:</p>
+<div class="math notranslate nohighlight">
+\[
+L(\boldsymbol{w}^T, b) = \sum_{i = 1}^m \left( Y_i - \boldsymbol{w}^T \boldsymbol{X}_i - b \right)^2 + \alpha || \boldsymbol{w} ||
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(|| \boldsymbol{w} || = \sum_j |w_j|\)</span></p>
+<p>and under L2-regularization to:</p>
+<div class="math notranslate nohighlight">
+\[
+L(\boldsymbol{w}^T, b) = \sum_{i = 1}^m \left( Y_i - \boldsymbol{w}^T \boldsymbol{X}_i - b \right)^2 + \alpha || \boldsymbol{w} ||_2^2
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(|| \boldsymbol{w} ||_2^2 = \sum_j w_j^2\)</span>, <span class="math notranslate nohighlight">\(\alpha\)</span> is a hyperparameter which controls the degree of penalization.</p>
+<p>In comparison to the original linear regression model nothing changes, except that we add either the sum of absolute weights or the sum of squared weights to the loss function when estimating the model.</p>
+<p>Nevertheless, the effect of both techniques with respect to the weights differs. Lasso regularization tends to exclude certain variables completely, while Ridge regression decreases all weights in a comparable manner. This makes Lasso regularization more valuable for the identification of important features, however, performance is usually better with Ridge regression.</p>
+<p>As an example, we generate a data set with ten feature which are more or less the same (except for a little randomness) and generate target observations if the true model is given by a linear regression model which uses all features. In the correlation matrix below, we visualize the correlation among features. The phenomenon of highly correlated variables is also known as <strong>multicollinearity</strong>. Intuitively, it should make sense that we may not all variables for prediction, if the information in each variable is more or less identical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">())</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Correlation feature matrix&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_02_blueprint_supervised_learning_14_0.png" src="../_images/03_02_blueprint_supervised_learning_14_0.png" />
+</div>
+</div>
+<p>Now, we fit the linear regression model with Lasso and Ridge regularization and examine the impact of increasing penalization which is controlled by <span class="math notranslate nohighlight">\(\alpha\)</span>. The difference between both techniques are quite obvious. In case of Lasso regularization, weights of individual features diminish towards zero, but this happens feature after feature. In case of Ridge regularization, more or less all weights decrease simultaneously with increasing penalization. Please note that regularization is a general technique which can be applied to different models in an analogous manner.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+
+<span class="n">n_alphas</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n_alphas</span><span class="p">)</span>
+<span class="n">lasso_coefs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ridge_coefs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">lasso_coefs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+    <span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">ridge_coefs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ridge</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">lasso_coefs</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="c1">#axs[0].set_xlim(ax.get_xlim()[::-1])  # reverse axis</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;weights&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Lasso regularization&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">ridge_coefs</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="c1">#axs[1].set_xlim(ax.get_xlim()[::-1])  # reverse axis</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ridge regularization&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_02_blueprint_supervised_learning_16_0.png" src="../_images/03_02_blueprint_supervised_learning_16_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="03_01_baseline_algorithms.html" title="previous page"><span class="section-number">2.1. </span>Baseline algorithms</a>
+    <a class='right-next' id="next-link" href="03_03_tree_models.html" title="next page"><span class="section-number">2.3. </span>Tree based models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

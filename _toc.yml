@@ -1,0 +1,19 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+#
+- file: notebook_files/00_introduction
+  numbered: true
+- file: notebook_files/01_preliminiaries
+  sections:
+    - file: notebook_files/01_01_software_programing
+    - file: notebook_files/01_02_math_and_statistics
+- file: notebook_files/02_supervised_learning
+  sections:
+    - file: notebook_files/02_01_baseline_algorithms
+    - file: notebook_files/02_02_blueprint_supervised_learning
+    - file: notebook_files/02_03_tree_models
+- file: notebook_files/03_neural_networks
+- file: notebook_files/04_unsupervised_learning
+  sections:
+    - file: notebook_files/04_01_kmeans_clustering
+    - file: notebook_files/04_02_pca

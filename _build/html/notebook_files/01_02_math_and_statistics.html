@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3. Math - General Concepts &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Supervised Learning" href="02_supervised_learning.html" />
+    <link rel="prev" title="1.1. Which Python?" href="01_01_software_programing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_01_software_programing.html">
+     1.1. Which Python?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_01_software_programing.html#fundamentals-for-using-python">
+     1.2. Fundamentals for using Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.3. Math - General Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#linear-algebra">
+     1.4. Linear Algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#analysis">
+     1.5. Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#statistics">
+     1.6. Statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_unsupervised_learning.html">
+   4. Unsupervised Learning
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/01_02_math_and_statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/01_02_math_and_statistics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/01_02_math_and_statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1.3. Math - General Concepts
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-algebra">
+   1.4. Linear Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrices-and-vectors">
+     1.4.1. Matrices and Vectors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-equation-systems-and-span">
+     1.4.2. Linear Equation Systems and Span
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank-and-decomposition-of-matrices">
+     1.4.3. Rank and Decomposition of Matrices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   1.5. Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differential-calculus">
+     1.5.1. Differential calculus
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-extremes-of-functions">
+     1.5.2. Finding Extremes of Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistics">
+   1.6. Statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-theory">
+     1.6.1. Probability Theory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#univariate-random-variables">
+     1.6.2. Univariate Random Variables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#important-distributions">
+     1.6.3. Important Distributions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-random-variables">
+     1.6.4. Multiple Random Variables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameter-estimation">
+     1.6.5. Parameter Estimation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-and-variance">
+     1.6.6. Bias and Variance
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="math-general-concepts">
+<h1><span class="section-number">1.3. </span>Math - General Concepts<a class="headerlink" href="#math-general-concepts" title="Permalink to this headline">¶</a></h1>
+<p>In the beginning, there is set theory. A <strong>set</strong> is a collection of distinct elements, e.g., <span class="math notranslate nohighlight">\(\lbrace 1, 2, 3 \rbrace\)</span>. Important sets for us are numerical sets, i.e., the set of natural numbers <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> and the set of real numbers <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. When we declare a single number, a <strong>scalar</strong>, from a set, we write <span class="math notranslate nohighlight">\(n \in \mathbb{N}\)</span> or <span class="math notranslate nohighlight">\(r \in \mathbb{R}\)</span>. A scalar can be a number which is used to describe an attribute of a person or an object, e.g., the size, the price, … when we are in need to record multiple attributes, we use the Cartesian product of a set. For instance the Cartesian product of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> two times is <span class="math notranslate nohighlight">\(\mathbb{R}^{2}\)</span> and we write <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_1, x_2) \in \mathbb{R}^{2}\)</span> to highlight that <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> is a member of <span class="math notranslate nohighlight">\(\mathbb{R}^{2}\)</span>; <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> could be the information of a person where <span class="math notranslate nohighlight">\(x_1\)</span> represents body height and <span class="math notranslate nohighlight">\(x_2\)</span> age of the person. Thus, you should remember that the position in an element of a Cartesian product is informative and can not be permuted arbitrarily. Generally speaking, elements of Cartesian products are arrays of numbers and when we use them for mathematical operations, we call them <strong>vectors</strong>. A vector can be considered as a (one-dimensional) special case of a <strong>matrix</strong> which is a two dimensional array of numbers. Assume, you want to keep track of body height and age of multiple persons, you need a matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{m \times n}\)</span> where each row <span class="math notranslate nohighlight">\(i = 1, ..., m\)</span> represents a different person and the columns <span class="math notranslate nohighlight">\(j = 1, ..., n\)</span> contain attributes of persons. For instance, if we collect information of three persons, the matrix containing this information would look like:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{A} = \begin{pmatrix}
+a_{1,1} &amp; a_{1,2}  \\ 
+a_{2,1} &amp; a_{2,2}  \\
+a_{3,1} &amp; a_{3,2}  \\ 
+\end{pmatrix}\end{split}\]</div>
+<p>Sometimes, we want to process data according to functional relationships, e.g., we may want to derive the body mass index with the information of age, body height and weight. Mathematically, we use a <strong>function</strong>, or more generally speaking, a <strong>mapping</strong>. This means we map elements from one set to elements of another set according to a certain rule. This is denoted as</p>
+<div class="math notranslate nohighlight">
+\[f: M \to N \]</div>
+<p>and tells us that according to rule <span class="math notranslate nohighlight">\(f\)</span> we map an element of <span class="math notranslate nohighlight">\(M\)</span> to an element of <span class="math notranslate nohighlight">\(N\)</span>. Technically, it must hold that only a unique element of <span class="math notranslate nohighlight">\(N\)</span> corresponds to each element of <span class="math notranslate nohighlight">\(M\)</span>. This means whenever we choose the same element of <span class="math notranslate nohighlight">\(M\)</span> under a specific rule <span class="math notranslate nohighlight">\(f\)</span> we get the same element of <span class="math notranslate nohighlight">\(N\)</span> over and over again. Or more easily spoken,  whenever we use the same argument for a function, it must lead to the same result. A mapping is a very general concept. It includes one dimensional functions <span class="math notranslate nohighlight">\(f: \mathbb{R} \to \mathbb{R}\)</span> and multidimensional functions <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> or other mathematical forms of mappings that we do not need in this course.</p>
+</div>
+<div class="section" id="linear-algebra">
+<h1><span class="section-number">1.4. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="matrices-and-vectors">
+<h2><span class="section-number">1.4.1. </span>Matrices and Vectors<a class="headerlink" href="#matrices-and-vectors" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important things for data science is to conduct basic mathematical operations with matrices and to know about typical concepts of matrices and their decompositions. Popular matrices are:</p>
+<ul class="simple">
+<li><p>square matrix: <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{n \times n}\)</span>, which means the number of rows and columns are identical</p></li>
+<li><p>transposed matrix: <span class="math notranslate nohighlight">\(\boldsymbol{A}^T = a_{ji}, i = 1, ..., m \text{ and } j = 1, ..., n\)</span>, which is the matrix we get if we switch rows and columns</p></li>
+<li><p>diagonal matrix: a square matrix <span class="math notranslate nohighlight">\(\boldsymbol{D} \in \mathbb{R}^{n \times n}\)</span> whose elements are all equal to zero except those on its diagonal</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{D} = 
+\begin{pmatrix} d_1 &amp; 0 &amp; \cdots &amp; 0\\
+    0 &amp; d_2 &amp; \cdots &amp; 0\\
+    \vdots &amp; \vdots &amp; &amp; \vdots\\
+    0 &amp; 0 &amp; \cdots &amp; d_n
+\end{pmatrix} = \text{diag}\lbrace d_i \rbrace\end{split}\]</div>
+<ul class="simple">
+<li><p>identiy matrix: a square matrix <span class="math notranslate nohighlight">\(\boldsymbol{I} \in \mathbb{R}^{n \times n}\)</span> whose elements are all equal to zero except those on its diagonal which are all equal to one</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{I} =
+\begin{pmatrix}
+    1 &amp; 0 &amp; \cdots &amp; 0\\
+    0 &amp; 1 &amp; \cdots &amp; 0\\
+    \vdots &amp; \vdots &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; \cdots &amp; 1
+\end{pmatrix} \end{split}\]</div>
+<ul class="simple">
+<li><p>inverse matrix: The inverse of a matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}^{-1}\)</span> is defined as <span class="math notranslate nohighlight">\(\boldsymbol{A} \boldsymbol{A}^{-1} = \boldsymbol{A}^{-1} \boldsymbol{A} = \boldsymbol{I}\)</span>, however, not for every matrix an inverse exists, but if it exists it is unique; a matrix with an inverse is called <strong>regular</strong>, while it is called <strong>singular</strong> if no inverse exists</p></li>
+</ul>
+<p>Basic matrix operations are, scalar multiplication, addition and matrix multiplication. The first two are quite intuitive. Given a matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{m \times n}\)</span> and a scalar <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span>, scalar multiplication is defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\lambda \cdot \boldsymbol{A} = \lambda \cdot 
+\begin{pmatrix}
+    a_{11} &amp; \cdots &amp; a_{1n}\\
+    a_{21} &amp; \cdots &amp; a_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    a_{m1} &amp; \cdots &amp; a_{mn}
+    \end{pmatrix} =  
+    \begin{pmatrix}
+    \lambda \cdot a_{11} &amp; \cdots &amp; \lambda \cdot a_{1n}\\
+    \lambda \cdot a_{21} &amp; \cdots &amp; \lambda \cdot a_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    \lambda \cdot a_{m1} &amp; \cdots &amp; \lambda \cdot a_{mn}
+\end{pmatrix}\end{split}\]</div>
+<p>Matrix addition of two matrices <span class="math notranslate nohighlight">\(\boldsymbol{A},\boldsymbol{B} \in \mathbb{R}^{m \times n}\)</span> is conducted by elementwise addition of each element:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A + B = 
+\begin{pmatrix}
+    a_{11} &amp; \cdots &amp; a_{1n}\\
+    a_{21} &amp; \cdots &amp; a_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    a_{m1} &amp; \cdots &amp; a_{mn}
+\end{pmatrix} + 
+\begin{pmatrix}
+    b_{11} &amp; \cdots &amp; b_{1n}\\
+    b_{21} &amp; \cdots &amp; b_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    b_{m1} &amp; \cdots &amp; b_{mn}
+\end{pmatrix} = 
+\begin{pmatrix}
+    a_{11} + b_{11} &amp; \cdots &amp; a_{1n} + b_{1n}\\
+    a_{21} + b_{21} &amp; \cdots &amp; a_{2n} + b_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    a_{m1} + b_{m1} &amp; \cdots &amp; a_{mn} + b_{mn}
+\end{pmatrix} 
+\end{split}\]</div>
+<p>Matrix multiplication feels unusal at the start, because it is not conducted elementwise. Given two matrices <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{m \times n},\boldsymbol{B} \in \mathbb{R}^{n \times p}\)</span>, their product is defined as <span class="math notranslate nohighlight">\(\boldsymbol{A} \boldsymbol{B} = \boldsymbol{C} \in \mathbb{R}^{m \times p}\)</span> with:</p>
+<div class="math notranslate nohighlight">
+\[c_{ij} = \sum_{k = 1}^{n} a_{ik} b_{kj}\]</div>
+<p>so each element <span class="math notranslate nohighlight">\(c_{ij}\)</span> is computed as the dot product of the i-th row from matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span> with the j-th column from matrix <span class="math notranslate nohighlight">\(\boldsymbol{B}\)</span>. Important to notice is the dimensionality of matrices and its importance for matrix multiplication. Two matrices can only be multiplied if the number of columns from the first matrix is equal to the number of rows from the second matrix. Vectors may be considered as (one dimensional) special cases of matrices consisting of a single row or column. The dot product between two vectors <span class="math notranslate nohighlight">\(\boldsymbol{a}, \boldsymbol{b} \in \mathbb{R}^n\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{a}^T\boldsymbol{b}=
+\begin{pmatrix} a_1,a_2,\dots,a_n \end{pmatrix}
+\begin{pmatrix}
+b_1\\b_2\\ \vdots\\ b_n
+\end{pmatrix} = a_1 b_1 + ... + a_n b_n 
+=\sum\limits_{i=1}^n a_i b_i \end{split}\]</div>
+<p>The square root of the dot product of a vector with its transposed form is called its <strong>norm</strong> and measures its size. Formally, we write:</p>
+<div class="math notranslate nohighlight">
+\[\Vert\boldsymbol{a}\Vert_2=\sqrt{\boldsymbol{a^T\ a}}=\sqrt{\sum\limits_{i=1}^n a_i^2}\]</div>
+<p>The <span class="math notranslate nohighlight">\(2\)</span> in subscript emphasizes that this is the <span class="math notranslate nohighlight">\(L^2\)</span> norm of the vector. In general the <span class="math notranslate nohighlight">\(L^p\)</span> norm of a vector is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\Vert\boldsymbol{a}\Vert_p = \left( \sum_i |a_i|^p \right)^{\frac{1}{p}} \]</div>
+<p>Besides the <span class="math notranslate nohighlight">\(L^2\)</span> norm, only the <span class="math notranslate nohighlight">\(L^1 = \sum_i |a_i|\)</span> is commonly used for methods of data analysis. While norms are measuring the size or length of a vector, we also want to take a look at two metrics which can be used for measuring the similarity between two vectors: (1) <strong>euclidean distance</strong> and (2) <strong>cosine similarity</strong>. Euclidean distance <span class="math notranslate nohighlight">\(d(\boldsymbol{a}, \boldsymbol{b})\)</span> between two vectors <span class="math notranslate nohighlight">\(\boldsymbol{a}, \boldsymbol{b} \in \mathbb{R}^n\)</span> is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[d(\boldsymbol{a}, \boldsymbol{b}) = \Vert \boldsymbol{a} - \boldsymbol{b} \Vert_2 = 	\sqrt{\sum_{i = 1}^{n} (a_i - b_i)^2}\]</div>
+<p>Cosine similarity measures similarity by the angle between two vectors and is derived by:</p>
+<div class="math notranslate nohighlight">
+\[\cos \theta = \frac{\boldsymbol{a}^T \boldsymbol{b} }{ \Vert \boldsymbol{a} \Vert \Vert \boldsymbol{b} \Vert}\]</div>
+<p>The lower the distance or cosine similarity, respectively, the more similar the vectors are. Imagine, you collect financial indicators from companies and each vectors represents one company. With euclidean distance or cosine similarity you are able to analyze how similar companies are.</p>
+</div>
+<div class="section" id="linear-equation-systems-and-span">
+<h2><span class="section-number">1.4.2. </span>Linear Equation Systems and Span<a class="headerlink" href="#linear-equation-systems-and-span" title="Permalink to this headline">¶</a></h2>
+<p>Solving <strong>linear equation systems</strong> is a necessary expertise for many important tasks related to matrix operations, e.g., matrix inversion. Given <span class="math notranslate nohighlight">\(m\)</span> equations with <span class="math notranslate nohighlight">\(n\)</span> unknown variables <span class="math notranslate nohighlight">\(x_1, ..., x_n\)</span>, a system of linear equations is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rrr} 
+        a_{11} x_1 + a_{12} x_2 + ... +  a_{1n} x_n &amp; = &amp; b_1 \\
+		a_{21} x_1 + a_{22} x_2 + ... +  a_{2n} x_n &amp; = &amp; b_2 \\
+		\vdots &amp; \vdots &amp; \vdots \\
+		a_{m1} x_1 + a_{m2} x_2 + ... +  a_{mn} x_n &amp; = &amp; b_m \\ 
+   \end{array}
+\end{split}\]</div>
+<p>or in matrix notation:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{A} \boldsymbol{x} = \boldsymbol{b}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{m \times n}, \boldsymbol{x} \in \mathbb{R}^n, \boldsymbol{b} \in \mathbb{R}^m\)</span>. In general, we face three possibilities: (1) the system can not be solved, (2) the system can be solved with an unique solution or (3) the system can be solved with an infinite amount of solutions. We can use the Gauss algorithm or the Gauss-Jordan algorithm, respectively, to find out in which situation we are. To keep this section slim, we omit the illustration of these algorithms, but they can be found in multiple text books or under this <a class="reference external" href="https://mathworld.wolfram.com/GaussianElimination.html">link</a>. Furthermore, another method of solving linear equation systems is given by Cramer’rule which is based on the <strong>determinant</strong> of the matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span>. The determinant of a matrix is a unique number which characterizes each (square) matrix. Formally, it is a mapping <span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n} \to \mathbb{R}\)</span> with <span class="math notranslate nohighlight">\(\text{det}: \boldsymbol{A} \to \text{det}\left( \boldsymbol{A} \right)\)</span>. If the determinant is different from zero, a unique solution for the corresponding linear equation system exists, if it is equal to zero, we may face no or infinite solutions.</p>
+<p>One important task for which we need to know how to solve linear equation systems is to analyze how <strong>vector spaces</strong> are generated. Vectors spaces are sets with certain rules (see this <a class="reference external" href="https://mathworld.wolfram.com/VectorSpace.html">link</a>). Examples are the set of <span class="math notranslate nohighlight">\(n\)</span> dimensional vectors <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> or matrices in <span class="math notranslate nohighlight">\(\mathbb{R}^{m \times n}\)</span>. Each vector space is generated by a set of basis vectors. To better understand this, we need to define a <strong>linear combination of vectors</strong> <span class="math notranslate nohighlight">\(\boldsymbol{a_1}, \boldsymbol{a_2}, ..., \boldsymbol{a_k} \in \mathbb{R}^m\)</span> with weights <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_k \in \mathbb{R}\)</span> which generates the vector <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> by:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = x_1 \boldsymbol{a_1} + x_2 \boldsymbol{a_2} + ... + x_k \boldsymbol{a_k} = \sum_{i = 1}^{k} x_i \boldsymbol{a_i}\]</div>
+<p>The vectors <span class="math notranslate nohighlight">\(\boldsymbol{a_1}, \boldsymbol{a_2}, ..., \boldsymbol{a_k} \in \mathbb{R}^m\)</span> are <strong>independent</strong>, if the null vector (the vector whose elements are all equal to zero) can only be generated by these vectors when setting all weights <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> to zero. This is called the <strong>trivial solution</strong> and means the linear equation system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    a_{11} &amp; \cdots &amp; a_{1n}\\
+    a_{21} &amp; \cdots &amp; a_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    a_{m1} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n \\
+\end{pmatrix} = 
+\begin{pmatrix}
+    0 \\
+    0 \\
+    \vdots \\
+    0 \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>has only one solution (<span class="math notranslate nohighlight">\(\boldsymbol{x} = \boldsymbol{0}\)</span>). If more then one solution exits, the vectors are <strong>dependent</strong>. As a consequence at least one of the vectors <span class="math notranslate nohighlight">\(\boldsymbol{a_1}, \boldsymbol{a_2}, ..., \boldsymbol{a_k} \in \mathbb{R}^m\)</span> can be generated by the remaining ones.</p>
+<p>The set of all possible linear vector combinations is called the <strong>span</strong> and denoted as <span class="math notranslate nohighlight">\(\langle \boldsymbol{a_1}, \boldsymbol{a_2}, ..., \boldsymbol{a_k} \rangle\)</span>. An important question is, how vector spaces, e.g., <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> are generated and how many vectors are needed for this task. The short answer is that each vector space can be generated by a number of independent vectors which are called <strong>basis vectors</strong>. Basis vectors are independent and the number of basis vectors is called the <strong>dimension</strong> of the vector space.</p>
+</div>
+<div class="section" id="rank-and-decomposition-of-matrices">
+<h2><span class="section-number">1.4.3. </span>Rank and Decomposition of Matrices<a class="headerlink" href="#rank-and-decomposition-of-matrices" title="Permalink to this headline">¶</a></h2>
+<p>The number of independent (row or column) vectors in a matrix is called its <strong>rank</strong>. If the number of independent vectors equals the number of columns (and rows), the matrix can be inverted. Matrix inversion can be conducted with the same techniques as solving linear equation systems. Matrix inversion can also be conducted with its determinant if it is different from zero implying a unique solution, and hereby, a unique inverse.</p>
+<p>Furthermore, sometimes decomposition of matrices can be useful for certain applications. We will take a look at the <strong>eigendecomposition</strong> and the <strong>singular value decomposition</strong> before we end this subsection.</p>
+<p>The eigen decomposition of a square matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{n \times n}\)</span> depends on <strong>eigenvalues</strong> and <strong>eigenvectors</strong> of if. If a number <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span> exists such that:</p>
+<div class="math notranslate nohighlight">
+\[ \boldsymbol{A} \boldsymbol{x} = \lambda \boldsymbol{x} \]</div>
+<p>then we call <span class="math notranslate nohighlight">\(\lambda\)</span> eigenvalue and <span class="math notranslate nohighlight">\(\boldsymbol{x} \in \mathbb{R}^n\)</span> the eigenvector. As <span class="math notranslate nohighlight">\(\boldsymbol{A} \boldsymbol{0} = \lambda \boldsymbol{0}\)</span> is always true, we are only interested in eigenvectors <span class="math notranslate nohighlight">\(\boldsymbol{x} \neq \boldsymbol{0}\)</span>.</p>
+<p>We can rewrite the equation above to:</p>
+<div class="math notranslate nohighlight">
+\[ \left( \boldsymbol{A} - \lambda \boldsymbol{I}_n \right) \boldsymbol{x} = \boldsymbol{0}\]</div>
+<p>One solution is always <span class="math notranslate nohighlight">\(\boldsymbol{x} = \boldsymbol{0}\)</span> and as we are only interested in solutions different from this one, we are searching for values of <span class="math notranslate nohighlight">\(\lambda\)</span> such that multiple solutions exist. For this to be true <span class="math notranslate nohighlight">\(\text{det}\left( \boldsymbol{A} - \lambda \boldsymbol{I}_n \right) = 0\)</span> must hold, because if the determinant is not equal to zero only a unique solution exists which is <span class="math notranslate nohighlight">\(\boldsymbol{x} = \boldsymbol{0}\)</span>. Deriving the determinant in dependence of <span class="math notranslate nohighlight">\(\lambda\)</span> leads to a <span class="math notranslate nohighlight">\(n\)</span>-th degree polynomial, the <strong>characteristic polynomial</strong>, whose roots are eigenvalues. Once we know those eigenvalues, we can derive corresponding eigenvectors with solving techniques of linear equation systems.</p>
+<p>Given a <span class="math notranslate nohighlight">\(n \times n\)</span> matrix has <span class="math notranslate nohighlight">\(n\)</span> linearly independent eigenvectors with eigenvalues <span class="math notranslate nohighlight">\(\boldsymbol{\lambda} = (\lambda_1, \lambda_2, ..., \lambda_n)\)</span>. The eigenvectors are concatenated column wise in the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{X} =  
+\begin{pmatrix}
+   \boldsymbol{x}^{(1)} &amp; \boldsymbol{x}^{(2)} &amp; ... &amp; \boldsymbol{x}^{(n)} \\
+\end{pmatrix} = 
+\begin{pmatrix}
+    x_{11} &amp; \cdots &amp; a_{1n}\\
+    x_{21} &amp; \cdots &amp; a_{2n}\\
+    \vdots &amp;        &amp; \vdots\\
+    x_{n1} &amp; \cdots &amp; x_{nn}
+\end{pmatrix}\end{split}\]</div>
+<p>then, the eigendecomposition of <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{A} = \boldsymbol{X}\text{diag}\lbrace \lambda_i \rbrace \boldsymbol{X}^{-1}
+\]</div>
+<p>Eigenvectors can be used for many things and are needed for principal component analysis which is a tool for dimensionality reduction in data analysis. Another interesting decomposition is the singular value decomposition which decomposes a matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{m \times n}\)</span> into:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\boldsymbol{A} = \boldsymbol{U}\boldsymbol{D}\boldsymbol{V}^{T}
+\]</div>
+<p>Matrices <span class="math notranslate nohighlight">\(\boldsymbol{U}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span> are <strong>orthogonal</strong> square matrices. An orthogonal matrix consists of mutually <strong>orthonormal</strong> vectors which means the pairwise vectors’ dot products are equal to zero and the length of each vector is standardized to a norm of one. The matrix <span class="math notranslate nohighlight">\(\boldsymbol{D}\)</span> is a diagonal matrix. The values along the diagonal are the <strong>singular values</strong>, while the columns of <span class="math notranslate nohighlight">\(\boldsymbol{U}\)</span> are called <strong>left-singular vectors</strong> and the columns of <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span> are called <strong>right-singular vectors</strong>. An example for an application of singular value decomposition is the generation of word embeddings, a method from the field of natural language processing, which is helpful to transform words into vectors.</p>
+</div>
+</div>
+<div class="section" id="analysis">
+<h1><span class="section-number">1.5. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="differential-calculus">
+<h2><span class="section-number">1.5.1. </span>Differential calculus<a class="headerlink" href="#differential-calculus" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important tools for us are derivatives of (continuous) functions. Especially, as they are very useful for an important task which is optimization.</p>
+<p>The definition of a function’s derivative is strongly related to the question to which degree the value of the function changes if its argument changes by a small amount. Typically, we are aware of derivatives for important functions such as:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p><span class="math notranslate nohighlight">\(f(x)\)</span></p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(f'(x)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(a + bx\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(x^p\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(px^{p-1}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(e^x\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(e^x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\ln x\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(\frac{1}{x}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\sin x\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(\cos x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\cos x\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(-\sin x\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>and in combination with homogeneity, additivity, the product and chain rule:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\left(\lambda f\right)' = \lambda f'\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left(f + g\right)' = f' + g'\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left(f \cdot g\right)' = f'\cdot g + f \cdot g'\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left(f \circ g\right)' = \left(f' \circ g\right) \cdot g' = f'\left(g\left(x\right)\right)g'(x)\)</span></p></li>
+</ul>
+<p>we are able to determine derivatives for a large family of composed functions. As you likely have heard before, the derivative <span class="math notranslate nohighlight">\(f'\)</span> for a function <span class="math notranslate nohighlight">\(f: \mathbb{R} \to \mathbb{R}\)</span> at a specific point <span class="math notranslate nohighlight">\(x_0\)</span> can be interpreted as the slope of a tangent at <span class="math notranslate nohighlight">\(x_0\)</span>. Moreover, its value informs us about the monotonic behavior. A function is strictly monotonically increasing if <span class="math notranslate nohighlight">\(f'(x) &gt; 0\)</span> and strictly monotonically decreasing if <span class="math notranslate nohighlight">\(f'(x) &lt; 0\)</span>.  Both can be examined in this figure:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#definition of the functions</span>
+<span class="n">x_square</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">x_square_neg</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1">#definition of the derivatives</span>
+<span class="n">derivative</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">derivative_neg</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_square</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">derivative</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">epsilon</span><span class="p">]))</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_square_neg</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_square_neg</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">derivative_neg</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">epsilon</span><span class="p">]))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_02_math_and_statistics_2_0.png" src="../_images/01_02_math_and_statistics_2_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="finding-extremes-of-functions">
+<h2><span class="section-number">1.5.2. </span>Finding Extremes of Functions<a class="headerlink" href="#finding-extremes-of-functions" title="Permalink to this headline">¶</a></h2>
+<p>Understanding the monotonic behavior of a function is very important in order to understand in which direction we need to go, if we want to reach the lowest or highest value of the function. For instance, in the plot on the left, the slope is positive at the value <span class="math notranslate nohighlight">\(2\)</span>, so even if we would not be able to see the plot, we know that we need to reduce the function’s argument if we are seeking for lower function values and vice versa. Once we have reached a point for which <span class="math notranslate nohighlight">\(f'(x) = 0\)</span>, we reached a point at which the monotonic behavior potentially changes. Such a point is called a <strong>stationary point</strong>. A stationary point is either a <strong>(local) minimum</strong>, <strong>(local) maximum</strong> or a <strong>saddle point</strong>. Thus, finding stationary points is a necessary task to identify extremes, however, not sufficient as a saddle point is not an extreme value of a function.</p>
+<p>To analyze what type of an extreme value we have found at a stationary point, the second derivative of a function can be used. The second derivative is informative regarding a function’s curvature. Given a function <span class="math notranslate nohighlight">\(f:\mathbb{R} \to \mathbb{R}\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is strictly convex, if for all <span class="math notranslate nohighlight">\(x, y \in \mathbb{R}, x \neq y\)</span> with <span class="math notranslate nohighlight">\(\lambda \in (0, 1)\)</span> it holds that:</p>
+<div class="math notranslate nohighlight">
+\[ f(\lambda x + (1 - \lambda) y) &lt; \lambda f(x) + (1 - \lambda) f(y) \]</div>
+<p>and strictly concave if:</p>
+<div class="math notranslate nohighlight">
+\[ f(\lambda x + (1 - \lambda) y) &gt; \lambda f(x) + (1 - \lambda) f(y) \]</div>
+<p>In the figure below, you see examples of a convex and a concave function. Imagine the tangent slopes of the first derivative for the convex function going from left to right. The slopes would strictly increase from negative to positive values, i.e., the first derivative of the first derivative (so the second derivative of the original function) is strictly increasing. Thus, the type of curvature can be evaluated with the second derivative. Second derivative values of strictly convex functions are strictly positive (<span class="math notranslate nohighlight">\(f''(x) &gt; 0\)</span>) strictly negative (<span class="math notranslate nohighlight">\(f''(x) &lt; 0\)</span>) for concave functions. As can be seen in the figure, a stationary point is a (local) minimum, if the function is convex and a (local) maximum if the function is concave.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s1">&#39;convex&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="s1">&#39;concave&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_02_math_and_statistics_4_0.png" src="../_images/01_02_math_and_statistics_4_0.png" />
+</div>
+</div>
+<p>Summing up, the first derivative tells us in which direction we need to search for lower or higher values and once we reached a possible extreme value, the second derivative at this point tells us if we found a minimum (so if the function is convex) or a maximum (so if the function is concave).</p>
+<p>Very often, we will face functions with multiple input arguments, meaning <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \to \mathbb{R}\)</span>. For these functions, we need the <strong>gradient</strong> and the <strong>Hessian</strong> matrix to search for extremes of the function. The gradient of a function is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(\text{grad}) f (\boldsymbol{x}) = \nabla f (\boldsymbol{x}) = 
+\begin{pmatrix}
+    f_{x_1} (\boldsymbol{x}) \\
+    f_{x_2} (\boldsymbol{x}) \\
+    \vdots \\
+    f_{x_n} (\boldsymbol{x}) \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>where, <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x_i} (\boldsymbol{x}) = f_{x_i} (\boldsymbol{x})\)</span> stands for the <strong>partial derivative</strong> of the function <span class="math notranslate nohighlight">\(f\)</span> with respect to <span class="math notranslate nohighlight">\(x_i\)</span>. Partial derivatives quantify the sensitivity of the function if <span class="math notranslate nohighlight">\(x_i\)</span> changes, keeping all other variables constant. To derive the partial derivative, we treat the remaining variables like constant values and apply techniques that we apply to one dimensional functions. Partial derivatives of higher order can be derived in a similar fashion, whereby, the order after which variables we partially derive first is irrelevant. An important collection of partial derivatives is the collection of all second partial derivatives which are stored in the Hessian matrix <span class="math notranslate nohighlight">\(\boldsymbol{H} (\boldsymbol{x})\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{H} (\boldsymbol{x}) = 
+\begin{pmatrix}
+    f_{x_1 x_1} (\boldsymbol{x}) &amp; f_{x_1 x_2} (\boldsymbol{x}) &amp; ... &amp; f_{x_1 x_n} (\boldsymbol{x}) \\
+    f_{x_2 x_1} (\boldsymbol{x}) &amp; f_{x_2 x_2} (\boldsymbol{x}) &amp; ... &amp; f_{x_2 x_n} (\boldsymbol{x})\\
+    \vdots  &amp; \vdots &amp; &amp; \vdots \\
+    f_{x_n x_1} (\boldsymbol{x}) &amp; f_{x_n x_2} (\boldsymbol{x}) &amp; ... &amp; f_{x_n x_n} (\boldsymbol{x})\\
+\end{pmatrix}
+\end{split}\]</div>
+<p>For a stationary point,</p>
+<div class="math notranslate nohighlight">
+\[ 
+\nabla f (\boldsymbol{x}) = \boldsymbol{0}
+\]</div>
+<p>holds. If the Hessian matrix is positive definite (all its eigenvalues are positive) at this point, we found a local minimum. If it is negative definite (all its eigenvectors) are negative, we found a local maximum.</p>
+<p>Mainly, we will use these techniques to optimize functions at a later stage. Optimization in our case typically means we are looking for the best possible way to adjust our data model to observed data. Hereby, we measure the level of adjustment with the help of <strong>objective functions</strong> which are also often called <strong>loss functions</strong> in this context.</p>
+</div>
+</div>
+<div class="section" id="statistics">
+<h1><span class="section-number">1.6. </span>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h1>
+<p>Why do we need statistics for data analytics? We observe randomness in more or less all fields of economics. For instance, spending a certain amount of money to promote a product will not increase its sales by a deterministic amount. Or if good news about a company are shared, we do not know for certain how this affects its future stock price. This causes uncertainty for which we use probability theory and its methods.</p>
+<div class="section" id="probability-theory">
+<h2><span class="section-number">1.6.1. </span>Probability Theory<a class="headerlink" href="#probability-theory" title="Permalink to this headline">¶</a></h2>
+<p>To express uncertainty via probabilities, we need three things:</p>
+<ol class="simple">
+<li><p>A set of all possible outcomes <span class="math notranslate nohighlight">\(\Omega = \{ \omega_1, ..., \omega_n  \}\)</span></p></li>
+<li><p><strong>Events</strong> which are subsets <span class="math notranslate nohighlight">\(A \subseteq \Omega\)</span> and a set of events <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> called <span class="math notranslate nohighlight">\(\sigma\)</span>-algebra, which fulfills three requirements:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Omega \in \mathcal{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A \in \mathcal{F} \Rightarrow \bar{A} \in \mathcal{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_1, A_2, ... \in \mathcal{F} \Rightarrow \bigcup\limits_{i \in \mathbb{N}} A_i \in \mathcal{F}\)</span></p></li>
+</ol>
+</li>
+<li><p>A mapping called <strong>probability</strong> <span class="math notranslate nohighlight">\(P: \mathcal{F} \rightarrow [0,1]\)</span>  which assigns numbers <span class="math notranslate nohighlight">\([0,1]\)</span> to every event <span class="math notranslate nohighlight">\(A\)</span>. The probability mapping must fulfill the axioms of probability:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(A \geq 0)~ \forall A_i~ \in \mathcal{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\Omega) = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P\left(\bigcup\limits_{i = 1}^{\infty} A_i \right) = \sum_{i = 1}^{\infty} P(A_i) \forall A_i \in \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(A_j \cap A_k = \emptyset\)</span>, <span class="math notranslate nohighlight">\(j \neq k\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p>Usually, we are not interested in the event itself but in a number associated with the event, e.g., units sold, revenue, price, … We call these numbers <strong>random numbers</strong> which are realizations of <strong>random variables</strong>. A one-dimensional random variable <span class="math notranslate nohighlight">\(X\)</span> maps the set of outcomes <span class="math notranslate nohighlight">\(\Omega\)</span> to real numbers:</p>
+<div class="math notranslate nohighlight">
+\[X: \Omega \to \mathbb{R}\]</div>
+<div class="math notranslate nohighlight">
+\[\omega \to X(\omega)\]</div>
+<p>For instance a coin tossing game with outcomes <span class="math notranslate nohighlight">\(\omega_1\)</span>: <em>head</em> and <span class="math notranslate nohighlight">\(\omega_2\)</span>: <em>tail</em>. If <em>head</em> is the outcome, we win 5 bucks and if <em>tail</em> is the outcome we loose 5 bucks. The random number <span class="math notranslate nohighlight">\(X\)</span> describing our profit for a coin toss is defined by:</p>
+<p><span class="math notranslate nohighlight">\(X(\omega_1) = 5\)</span> and <span class="math notranslate nohighlight">\(X(\omega_2) = -5\)</span>. More technically speaking <span class="math notranslate nohighlight">\(X\)</span> must be <strong>measurable</strong>. Given a subset of <span class="math notranslate nohighlight">\(B \in \mathbb{R}\)</span>, the inverse image of <span class="math notranslate nohighlight">\(B\)</span> with respect to <span class="math notranslate nohighlight">\(X\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[X^{-1}(B) = \{\omega \in \Omega | X(\omega) \in B\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> be a set of subsets from <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(X\)</span> is measurable if <span class="math notranslate nohighlight">\(X^{-1}(B) \in \mathcal{F}\)</span> for all <span class="math notranslate nohighlight">\(B \in \mathcal{B}\)</span>. For the probability measure of <span class="math notranslate nohighlight">\(X\)</span>, it holds that:</p>
+<div class="math notranslate nohighlight">
+\[P_X(X \in B) = P(X^{-1}(B)), B \in \mathcal{B}\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(X\)</span> is not just a measure mapping outcomes to numbers, but rather maps from one probability space <span class="math notranslate nohighlight">\((\Omega, \mathcal{F}, P)\)</span> to probability space <span class="math notranslate nohighlight">\((\mathbb{R}, \mathcal{B}, P_X)\)</span>. In the following, we use capital letters for random variables and lower case letters for concrete realizations of the random variable, e.g., <span class="math notranslate nohighlight">\(P(X = x) = P(X = 5) = 0.5\)</span>. For a vector of random variables we write <span class="math notranslate nohighlight">\(\boldsymbol{X} = (X_1, ..., X_n)\)</span> and for a concrete realization we write <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_1, ..., x_n)\)</span>.</p>
+</div>
+<div class="section" id="univariate-random-variables">
+<h2><span class="section-number">1.6.2. </span>Univariate Random Variables<a class="headerlink" href="#univariate-random-variables" title="Permalink to this headline">¶</a></h2>
+<p>Random variables can be <strong>discrete</strong> or <strong>continuous</strong>. The former has only a finite amount of realizations (or infinite countable realizations), while the latter can exhibit an infinite amount of different realizations.</p>
+<p>For a discrete random variable, the function assigning probabilities to its realizations is called <strong>probability mass function</strong> and is given by a list-alike definition:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f(x) = \begin{cases}
+			P_X(\{ x \}) &amp; \text{for } X = x  \\
+			0 &amp; \, \text{else}
+         \end{cases}
+\end{split}\]</div>
+<p>The function</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) = P_X\left( \{X |X \leq x \} \right) = P_X\left( (-\infty, x] \right) = \sum_{x_i \leq x} f(x_i)
+\]</div>
+<p>is called <strong>cumulative distribution function</strong>.</p>
+<p>For a continuous random variable, the probability of a concrete realization is equal to 0, <span class="math notranslate nohighlight">\(P(X = x) = 0\)</span>. Instead of directly defining a function mapping probabilities to subsets of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, we define a <strong>probability density function</strong> <span class="math notranslate nohighlight">\(f(x)\)</span> which enables us to determine probabilities by integration. The domain of this function must be the set of all possibles states of <span class="math notranslate nohighlight">\(X\)</span>. Furthermore, it must hold the <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> and that <span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty} f(x)dx = 1\)</span>. With this definition the corresponding cumulative distribution function is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) = \int_{-\infty}^{x} f(t)dt
+\]</div>
+<p>Probability distributions can be compared by numbers which summarize their characteristics such as location, variation, shape and so on. For this purpose, ordinary and central moments of the distributions are used.</p>
+<p>The <strong>expectation</strong> or <strong>expected value</strong> of a random variable if defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+E(X) = \begin{cases}
+			\sum_i x_i \cdot f(x_i) &amp;  X   \text{ discrete} \\
+			\int_{-\infty}^{\infty} x \cdot f(x) dx &amp; X \text{ continuous}
+       \end{cases}
+\end{split}\]</div>
+<p>The expectation is linear which means: <span class="math notranslate nohighlight">\(E(X + Y) = E(X) + E(Y)\)</span> and <span class="math notranslate nohighlight">\(E(aX) = a E(X)\)</span> holds. In addition the relation <span class="math notranslate nohighlight">\(E(a + bX) = a + b E(X)\)</span> can be useful in some cases.</p>
+<p>The <strong>variance</strong> measures how much realizations of a random variable vary and is defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Var(X) = E(X-E(X))^2 =
+			\begin{cases}
+			\sum_i (x_i - E(X))^2 \cdot f(x_i)   &amp; X \text{ discrete} \\
+			\int_{-\infty}^{\infty} (x - E(X))^2 \cdot f(x) dx  &amp; X \text{ continuous}
+			\end{cases}
+\end{split}\]</div>
+<p>For the variance, it holds that <span class="math notranslate nohighlight">\(Var(a + bX) = b^2 Var(X)\)</span>. The square root of the variance defines the <strong>standard deviation</strong> which is often denoted by the symbol <span class="math notranslate nohighlight">\(\sigma_X\)</span>.</p>
+<p>If a probability distribution is not symmetric it is skewed. To quantify <strong>skewness</strong>, we use:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{E \left[\left(X - E(X)\right)^3 \right]}{\sigma_X^3}  
+\]</div>
+<p>For negative values, the distribution is left skewed and for positive values, the distribution is right skewed. In addition of skewness, <strong>kurtosis</strong> is also often used for the characterization of probability distributions.</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{E \left[\left(X - E(X)\right)^4 \right]}{\sigma_X^4}  
+\]</div>
+<p>To characterize the level of kurtosis, the normal distribution is usually taken as a reference. It exhibits a kurtosis of <span class="math notranslate nohighlight">\(3\)</span>. If distributions exhibit higher kurtosis than <span class="math notranslate nohighlight">\(3\)</span>, we speak of excess kurtosis and leptokurtic distributions. These distributions are characterized by higher probability mass in the tails of the distribution. This means, extreme outcomes of the random variable are more likely. If a distribution exhibits a kurtosis lower then <span class="math notranslate nohighlight">\(3\)</span>, we say it is platokurtic.</p>
+<p>Besides those four characteristic measures, quantiles of probability distributions can be used for informational purposes. Let us denote <span class="math notranslate nohighlight">\(F^{-1}: [0, 1] \to \mathbb{R}\)</span> as the inverse of the cumulative probability density function. Given some probability <span class="math notranslate nohighlight">\(\alpha\)</span>, we say <span class="math notranslate nohighlight">\(x_{\alpha}\)</span> is the <span class="math notranslate nohighlight">\(\alpha\)</span> <strong>quantile</strong> of <span class="math notranslate nohighlight">\(X\)</span>, if:</p>
+<div class="math notranslate nohighlight">
+\[
+1 - F(x_{\alpha}) \geq 1 - \alpha ~~\text{and } F(x_{\alpha}) \geq \alpha
+\]</div>
+<p>For instance assume you own an insurance company and <span class="math notranslate nohighlight">\(X\)</span> represents losses in million due to damages of houses for a year. A value of <span class="math notranslate nohighlight">\(x_{0.95} = 1000\)</span> tells us that losses higher than 1000 will only be exceeded with a probability of 95%. If another company has a value which is higher, e.g., 1100, we immediately know that the latter company faces a greater probability of high losses. At the same time it is possible that both companies have the same expectation for such losses.</p>
+</div>
+<div class="section" id="important-distributions">
+<h2><span class="section-number">1.6.3. </span>Important Distributions<a class="headerlink" href="#important-distributions" title="Permalink to this headline">¶</a></h2>
+<p>There is a multitude of interesting and useful probability distributions. However, we only name a few examples which are most relevant for data modeling.</p>
+<p><strong>Bernoulli Distribution</strong></p>
+<p>The Bernoulli distribution is the distribution of a random variable with two outcomes <span class="math notranslate nohighlight">\(X = 0\)</span> and <span class="math notranslate nohighlight">\(X = 1\)</span>. The distribution is defined by a single parameter <span class="math notranslate nohighlight">\(\pi \in [0, 1]\)</span> which equals the probability for <span class="math notranslate nohighlight">\(P(X = 1) = \pi\)</span>. As we only have two outcomes this also defines the probability <span class="math notranslate nohighlight">\(P(X = 0) = 1 - P(X = 1) = 1 - \pi\)</span>. Accordingly, the expectation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+E(X) = \pi \cdot 1 + (1 - \pi) \cdot 0 = \pi
+\]</div>
+<p>and the variance is:</p>
+<div class="math notranslate nohighlight">
+\[
+Var(X) = \pi \cdot (1 - \pi)^2 + (1 - \pi) \cdot (0 - \pi)^2 = \pi (1 - \pi)(1 - \pi + \pi) = \pi (1 - \pi)
+\]</div>
+<p><strong>Categorical Distribution</strong></p>
+<p>If a random variable has <span class="math notranslate nohighlight">\(K\)</span> possible realizations, we call its distribution categorical of multinoulli. Let <span class="math notranslate nohighlight">\(\boldsymbol{p} = (p_1, ..., p_K)\)</span> define the probability vector where each single entry <span class="math notranslate nohighlight">\(p_k\)</span> represents the probability <span class="math notranslate nohighlight">\(P(X = k)\)</span> and <span class="math notranslate nohighlight">\(\sum_{k = 1}^{K} p_k = 1\)</span>. Accordingly, the probability mass function can be written by:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \prod_{k = 1}^{K} p_k^{[x = k]}
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[x = k] = \begin{cases}
+            1 &amp; \text{ if } x = k \\
+            0 &amp; \text{ else}
+		  \end{cases}
+\end{split}\]</div>
+<p>Typically the expectation or variance of the categorical distribution is not of great interest to us because in most of the times the numbers <span class="math notranslate nohighlight">\(k\)</span> stand for different categories which are not represented by the specific value of <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p><strong>Normal Distribution</strong>
+The normal distribution is often used for various applications. It is defined by two parameters <span class="math notranslate nohighlight">\(\mu, \sigma &gt; 0\)</span> and can be used for continuous variables over <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. Its density function is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( - \frac{\left( x - \mu \right)^2}{2 \sigma^2} \right)
+\]</div>
+<p>The normal distribution is able to mimic real-life phenomena like measurement errors, but its frequent usage is probably better explainable by its mathematical properties which often make results analytically traceable.</p>
+</div>
+<div class="section" id="multiple-random-variables">
+<h2><span class="section-number">1.6.4. </span>Multiple Random Variables<a class="headerlink" href="#multiple-random-variables" title="Permalink to this headline">¶</a></h2>
+<p>Typically, we will take a look at multiple random variables at the same time. Very often certain relationships exist between these variables. The distribution over multiple random variables is described by their univariate characteristics together with their linkages:</p>
+<div class="math notranslate nohighlight">
+\[
+F(\boldsymbol{x}) = F(x_1, ..., x_n) = P(X_1 \leq x_1, ..., X_n \leq x_n)
+\]</div>
+<p>Technically <span class="math notranslate nohighlight">\(F\)</span> can be separated into <span class="math notranslate nohighlight">\(F(x_1, ..., x_n) = C(F_{X_1}(x_1), ..., F_{X_n}(x_n))\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is called a copula which specifies the dependence structure between the univariate random variables and <span class="math notranslate nohighlight">\(F_{X_1}, ..., F_{X_n}\)</span> are univariate distributions.</p>
+<p>Most important to us are the concepts of independence, dependence and conditionality in the context of multivarite distributions.</p>
+<p>The <strong>conditional distribution</strong> of two random variables is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1 | X_2}(x_1 | x_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{f_{X_2}(x_2)}
+\]</div>
+<p>We can abstract this definition and derive the <strong>chain rule of conditional probabilities</strong>. Assume we have:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1, X_2, X_3}(x_1, x_2, x_3) = f_{X_1 | X_2, X_3}(x_1 | x_2, x_3) f_{X_2, X_3}(x_2, x_3)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+f_{X_2, X_3}(x_2, x_3) = f_{X_2 | X_3}(x_2 | x_3) f_{X_3}(x_3)
+\]</div>
+<p>combining this, leads to:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1, X_2, X_3}(x_1, x_2, x_3) = f_{X_1 | X_2, X_3}(x_1 | x_2, x_3) f_{X_2 | X_3}(x_2 | x_3) f_{X_3}(x_3)
+\]</div>
+<p>The generalization leads to:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1, ..., X_n}(x_1, ..., x_n) = f_{X_1}(x_1) \prod_{i = 2}^{n} f_{X_i | X_1, ..., X_{i-1}}(x_i | x_1, ..., x_{i-1})
+\]</div>
+<p>Random variables <span class="math notranslate nohighlight">\(X_1, ..., X_n\)</span> are <strong>independent</strong> if their joint distribution is given by the product of their univariate distributions:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x_1, ...., x_n) = f_{X_1}(x_1) \cdot ... \cdot f_{X_n}(x_n)
+\]</div>
+<p>We will often find ourselves in the position in which we are interested in conditional point of views. For instance, what is the probability for granting a credit to a person, if the person is male and below 25 years old. Conditional distributions are defined for discrete as well as continuous product set. In the discrete case the <strong>conditional probability mass function</strong> for two random variables is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1 | X_2}(x_1 | x_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{f_{X_2}(x_2)}
+\]</div>
+<p>for a fixed realization <span class="math notranslate nohighlight">\(x_2\)</span> and all <span class="math notranslate nohighlight">\(x_1\)</span> in the domain of <span class="math notranslate nohighlight">\(X\)</span>. The corresponding <strong>conditional cumulative distribution</strong> function is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+F_{X_1 | X_2}(x_1 | X_2 = x_2) = \sum_{x_{1i} \leq x_1} f_{X_1 | X_2}(x_{1i} | X_2 = x_2) = \sum_{x_{1i} \leq x_1} \frac{f_{X_1, X_2}(x_{1i}, x_2)}{f_{X_2}(x_2)}
+\]</div>
+<p>The <strong>conditional probability density function</strong> for continuous variables is also given by:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{X_1 | X_2}(x_1 | x_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{f_{X_2}(x_2)}
+\]</div>
+<p>while the <strong>conditional cumulative distribution function</strong> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+F_{X_1 | X_2}(x_1 | X_2 = x_2) = \int_{-\infty}^{x_1} \frac{f_{X_1, X_2}(u,x_2)}{f_{X_2}(x_2)} \, du
+\]</div>
+<p>Also of importance to us is the concept of <strong>conditional independence</strong>. Often, we will find ourselves in the situation in which we use some predictor variables <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> to learn something about a target variable <span class="math notranslate nohighlight">\(Y\)</span>. When we estimate parameters for models which define a relationship between <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, we often implicitly assume that realizations of the target variables are independent, conditional on the realizations of predictor variables.</p>
+<p>In general, two random variables <span class="math notranslate nohighlight">\(Y_1, Y_2\)</span> are conditionally independent, given the realization of a random variable <span class="math notranslate nohighlight">\(X\)</span> if:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{Y_1, Y_2 | X = x}(y_1, y_2) = f_{Y_1 | X = x}(y_1) f_{Y_2 | X = x}(y_2) 
+\]</div>
+<p>This means, conditional on the observation <span class="math notranslate nohighlight">\(x\)</span>, what happens with <span class="math notranslate nohighlight">\(Y_1\)</span> has no impact on the observation of <span class="math notranslate nohighlight">\(Y_2\)</span> and vice versa. Note that we will even assume a bit more when we estimate parameters for our models. That is, given realizations of <span class="math notranslate nohighlight">\(X_i\)</span>, <span class="math notranslate nohighlight">\(i = 1, ..., n\)</span>, we assume all <span class="math notranslate nohighlight">\(Y_i\)</span> to be conditionally independent, so, e.g. for two random variables:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{Y_1, Y_2 | X_1 = x_1, X_2 = x_2}(y_1, y_2) = f_{Y_1 | X_1 = x_1}(y_1) f_{Y_2 | X_2 = x_2}(y_2) 
+\]</div>
+<p>To quantify <strong>linear dependence</strong> between two random variables the <strong>covariance</strong> is used.</p>
+<div class="math notranslate nohighlight">
+\[
+Cov(X,Y) = E\left[(X_1-E(X_1))\cdot (X_2-E(X_2)) \right] = E(X_1\cdot X_2) - E(X_1)E(X_2)
+\]</div>
+<p>The covariance can be scaled by the standard deviations of <span class="math notranslate nohighlight">\(X_1, X_2\)</span> which leads to the <strong>coefficient of linear correlation</strong> which is in the range <span class="math notranslate nohighlight">\([-1, 1]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \frac{Cov(X_1,X_2)}{\sqrt{Var(X_1)} \cdot \sqrt{Var(X_2)}}
+\]</div>
+<p>It is important to understand that only linear dependence is captured adequately by covariance. Therefore, it is sometimes more reasonable to take into account metrics which also capture non-linear dependencies in an adequate way. An example is Spearman’s rho which is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_S = \frac{Cov(rg_{X_1},rg_{X_2})}{ \sigma_{rg_{X_1}} \cdot \sigma_{rg_{X_2}}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(rg\)</span> stands for the rank of the realization and not its value.</p>
+</div>
+<div class="section" id="parameter-estimation">
+<h2><span class="section-number">1.6.5. </span>Parameter Estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h2>
+<p>In general, we will often be interested in finding a model for random variables <span class="math notranslate nohighlight">\(Y_i\)</span>, <span class="math notranslate nohighlight">\(i = 1, ..., n\)</span>. Most of the times, we try to improve our understanding of <span class="math notranslate nohighlight">\(Y_i\)</span> by including predictor variables <span class="math notranslate nohighlight">\(\boldsymbol{X}_i\)</span>. With and without predictor variables, a model for <span class="math notranslate nohighlight">\(Y_i\)</span> is typically <strong>parametric</strong> which means the model specification depends on parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. An example is the normal distribution which depends on two parameters or a linear regression model which includes parameters for the regression line and the variance of the error variable.</p>
+<p>We will come back to parameter estimation in detail in subsequent chapters. In general, three ways of estimation are discussed for parameter estimation:</p>
+<ol class="simple">
+<li><p>Least-Squares Estimation</p></li>
+<li><p>Maximum-Likelihood Estimation</p></li>
+<li><p>Bayesian Estimation</p></li>
+</ol>
+<p><strong>Least-Squares Estimation</strong></p>
+<p>Least-squares estimation refers to a minimization problem. The unknown parameter is derived via minimizing squared deviations between the random variable and the parameter:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{\theta} \sum_{i = 1}^{n} (Y_i - \theta)^2
+\]</div>
+<p>Even though this is a general concept, it is mostly used for estimation of expectations or conditional expectations.</p>
+<p><strong>Maximum-likelihood estimation</strong></p>
+<p>Maximum-likelihood estimation refers to a maximization problem. The unknown parameter is derived via maximizing the likelihood of the data <span class="math notranslate nohighlight">\((Y_1, ..., Y_n)\)</span>. This presupposes a certain distributional form for <span class="math notranslate nohighlight">\(Y_i\)</span> which is expressed by the probability mass or density function <span class="math notranslate nohighlight">\(f\)</span> which depends on parameter values. Assuming independent and identically distributed (iid) random variables, the likelihood of the data is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\boldsymbol{\theta}) = \prod_{i = 1}^{n} f(Y_i | \boldsymbol{\theta})
+\]</div>
+<p>Out of technical reasons, we usually maximize the log-likelihood:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\left( \mathcal{L}(\boldsymbol{\theta}) \right) = \sum_{i = 1}^{n} \ln \left(f(Y_i | \boldsymbol{\theta})\right)
+\]</div>
+<p>The parameter is estimated by:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}_{ML} = \arg \max_{\boldsymbol{\theta}} \ln\left( \mathcal{L}(\boldsymbol{\theta}) \right)
+\]</div>
+<p><strong>Bayesian estimation</strong></p>
+<p>Bayesian estimation refers to a problem which differs in its logic to the previous two approaches. To express uncertainty about the unknown parameter, it is described by a probability distribution. The aim is to estimate the parameter’s distribution after observing data <span class="math notranslate nohighlight">\(\boldsymbol{y} = (y_1, ..., y_n)\)</span>, i.e., <span class="math notranslate nohighlight">\(f(\theta | \boldsymbol{y})\)</span>. The estimate itself is taken from this distribution and usually we use the distribution’s expectation or median. The distribution is derived using Bayes theorem:</p>
+<div class="math notranslate nohighlight">
+\[
+f(\theta | \boldsymbol{y}) = \frac{f(\boldsymbol{y} | \theta) f(\theta)}{\int f(\boldsymbol{y} | \theta)f(\theta) d\theta}
+\]</div>
+<p><span class="math notranslate nohighlight">\(f(\boldsymbol{y} | \theta)\)</span> represents the likelihood of the data and <span class="math notranslate nohighlight">\(f(\theta)\)</span> is the prior distribution which reflects our idea about the unknown parameter before we observe any data.</p>
+</div>
+<div class="section" id="bias-and-variance">
+<h2><span class="section-number">1.6.6. </span>Bias and Variance<a class="headerlink" href="#bias-and-variance" title="Permalink to this headline">¶</a></h2>
+<p>Parameters are estimated on <span class="math notranslate nohighlight">\(m\)</span> random samples which makes the estimator <span class="math notranslate nohighlight">\(\theta_m\)</span> a random number itself. If the expected value of the estimator equals its true value, we say the estimator is <strong>unbiased</strong>. On the contrary, the <strong>bias</strong> can be defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{bias}(\hat{\theta}_m) = E(\hat{\theta}_m) - \theta
+\]</div>
+<p>You may picture it like this: Assume you can draw many random samples from the data generating process. Due to randomness your parameter estimate will differ for different samples. However after a very large amount of random samples the average of all parameter estimates will be equal to the true parameter. Sometimes this is only true if the random samples are of increasing size. In case of the latter, we speak of parameters which are <strong>asymptotically unbiased</strong> and write <span class="math notranslate nohighlight">\(\lim \limits_{m \to \infty} E(\hat{\theta}_m) = \theta\)</span>.</p>
+<p>For obvious reasons, unbiasedness is a pleasant attribute of an estimator, but not the only one we care about. Besides, we want our estimates not to vary too much for different data sets. Therefore, we also take a look at the variance of an estimator <span class="math notranslate nohighlight">\(Var(\hat{\theta}_m)\)</span>. As both, bias and variance are important attributes, we usually use the <strong>mean squared error</strong> to evaluate and compare estimators. The mean squared error is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = E \left[ (\hat{\theta}_m - \theta)^2\right] = \text{bias}(\hat{\theta}_m)^2 + Var(\hat{\theta}_m)
+\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="01_01_software_programing.html" title="previous page"><span class="section-number">1.1. </span>Which Python?</a>
+    <a class='right-next' id="next-link" href="02_supervised_learning.html" title="next page"><span class="section-number">2. </span>Supervised Learning</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
