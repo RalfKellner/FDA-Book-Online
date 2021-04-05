@@ -1,0 +1,1184 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.1. Baseline algorithms &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2. A blueprint for conducting supervised learning problems" href="03_02_blueprint_supervised_learning.html" />
+    <link rel="prev" title="2. Supervised Learning" href="03_supervised_learning.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="03_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.1. Baseline algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_02_blueprint_supervised_learning.html">
+     2.2. A blueprint for conducting supervised learning problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_03_tree_models.html">
+     2.3. Tree based models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/03_01_baseline_algorithms.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/03_01_baseline_algorithms.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/03_01_baseline_algorithms.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-regression">
+   2.1.1. Linear Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimation">
+     2.1.1.1. Estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-importance">
+     2.1.1.2. Feature Importance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression">
+   2.1.2. Logistic Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.1.2.1. Estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2.1.2.2. Feature Importance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-classification-regression">
+   2.1.3. Multi-Classification Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2.1.3.1. Estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.1.3.2. Feature Importance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-baseline-algorithms">
+   2.1.4. Summary of Baseline Algorithms
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="baseline-algorithms">
+<h1><span class="section-number">2.1. </span>Baseline algorithms<a class="headerlink" href="#baseline-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>For each learning problem, we will follow the same procedure.</p>
+<ul class="simple">
+<li><p>How do we generate predictions for the target variable - we refer to this as the (learning) algorithm</p></li>
+<li><p>How do we estimate the parameters of the algorithm - estimated parameters and the algorithm is what we call the model</p></li>
+<li><p>How do we identify feature importance - so what are the most important variables for the target variable</p></li>
+</ul>
+<div class="section" id="linear-regression">
+<h2><span class="section-number">2.1.1. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>For regression problems, the target variable is on a metric scale. When using linear regression, the aim is to predict values for <span class="math notranslate nohighlight">\(Y_i\)</span>, given a linear relationship between <span class="math notranslate nohighlight">\(Y_i\)</span> and features <span class="math notranslate nohighlight">\(\boldsymbol{X}_i = (X_{i1}, ..., X_{in})\)</span>. The regression line is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) = \boldsymbol{w}^T \boldsymbol{X}_{i} + b = w_1 \cdot X_{i1} + ... + w_n \cdot X_{in} + b
+\label{linear_regression}\tag{1}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} \in \mathbb{R}^n, b \in \mathbb{R}\)</span> are parameters that need to be estimated. In its simplest form with one feature, the regression line looks like:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_1_0.png" src="../_images/03_01_baseline_algorithms_1_0.png" />
+</div>
+</div>
+<p>However, the regression model is not as limited as it seems. It can be transformed into a model which is able to capture non-linear relationships as well, e.g, by transforming and adding features. For instance, features can be raised to higher powers which results in a polynomial regression. Adding <span class="math notranslate nohighlight">\(X^2\)</span> to the univariate regression line, the regression is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) = w_1 \cdot X_i + w_2 \cdot X_i^2 + b
+\]</div>
+<p>And looks like:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_3_0.png" src="../_images/03_01_baseline_algorithms_3_0.png" />
+</div>
+</div>
+<div class="section" id="estimation">
+<h3><span class="section-number">2.1.1.1. </span>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">¶</a></h3>
+<p>This is solved by minimizing squared deviations between predictions according to Equation <a href="#mjx-eqn-linear_regression">1</a>  and observed values <span class="math notranslate nohighlight">\(y_i\)</span>. Thus, the function to be minimized by calibrating the model parameters is:</p>
+<div class="math notranslate nohighlight">
+\[
+L(\boldsymbol{w}^T, b) = \sum_{i = 1}^m \left( y_i - \boldsymbol{w}^T \boldsymbol{x}_i - b \right)^2
+\]</div>
+<p>This function is often called the <strong>loss function</strong> or the <strong>cost function</strong>. The optimization problem can be solved analytically. This means a closed form solution exists that returns parameter estimates if we insert observed data into a formula. In general you do not need to worry about the derivation of such solutions because you will estimate all models with Python packages. These packages either include a closed form solution, if it exists, or apply a numerical solution technique under the hood. Nevertheless, I think it is beneficial to get an idea how we would solve the optimization problem by ourselves.</p>
+<p>Let us take a look at the univariate linear regression model. To derive parameter estimates for a random sample <span class="math notranslate nohighlight">\(\lbrace y_i, x_i \rbrace_{i = 1}^m\)</span> we minimize:</p>
+<div class="math notranslate nohighlight">
+\[
+L(w, b) = \sum_{i = 1}^m \left( y_i - w \cdot x_i - b \right)^2
+\]</div>
+<p>We follow basic calculus and derive stationary points as candidates for the minima. To do so, we need the gradient, i.e., partial derivatives of the loss function with respect to the parameters, set them to zero and search for the roots of these equations.</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L(w, b)}{\partial w} = -2 \sum_{i = 1}^m \left( y_i - w \cdot x_i - b \right) \cdot x_i  \overset{!}{=} 0 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L(w, b)}{\partial b} = -2 \sum_{i = 1}^m \left( y_i - w \cdot x_i - b \right)  \overset{!}{=} 0
+\]</div>
+<p>The solution of this equation system delivers estimators for <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{w} = \frac{\sum_i (x_i - \bar{x})(y_i - \bar{y})}{\sum_i (x_i - \bar{x})^2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\hat{b} = \bar{y} - \hat{w} \bar{x}
+\]</div>
+<p>For completeness, it also needs to be analyzed whether the solution is a minimum, which is the case.</p>
+<p>This simply should show you that sometimes closed form solutions can be derived by simple mathematical methods. However, especially for more complex models this will not be the case. If we find ourselves in such a situation, the packages we use will use numerical solution techniques which in many cases use the information of the gradient. One of the most popular methods is the <strong>gradient decent</strong>. To understand how it works, we make it as easy as possible. Assume we only have one pair <span class="math notranslate nohighlight">\((y = 3, x = 2)\)</span>. Our aim is to find the parameter <span class="math notranslate nohighlight">\(w\)</span> which minimizes:</p>
+<div class="math notranslate nohighlight">
+\[
+L(w) = (y - w \cdot x)^2 = (3 - w \cdot 2)^2
+\]</div>
+<p>Visually, we want to find the slope of the regression line which starts in the origin and crosses the point as can be seen in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_5_0.png" src="../_images/03_01_baseline_algorithms_5_0.png" />
+</div>
+</div>
+<p>We can see that the solution is given by <span class="math notranslate nohighlight">\(w = 1.5\)</span>. But let us take a look how we would find this solution with the numerical method gradient decent. As the name suggests, gradient descent makes use of the gradient of the function with respect to unknown parameter. For our example the gradient is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L(w)}{\partial w} = -4(3 - 2w) = 8 w - 12
+\]</div>
+<p>Let us take a look at the loss function, for values of <span class="math notranslate nohighlight">\(w \in [-1, 4]\)</span>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L(w)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_7_0.png" src="../_images/03_01_baseline_algorithms_7_0.png" />
+</div>
+</div>
+<p>The value of the derivative at a given value for <span class="math notranslate nohighlight">\(w\)</span> is the slope of the tangent at this point. For instance, if we insert <span class="math notranslate nohighlight">\(w = 2\)</span> the derivative equals <span class="math notranslate nohighlight">\(4\)</span> or for <span class="math notranslate nohighlight">\(w = 0.5\)</span> it results <span class="math notranslate nohighlight">\(-8\)</span>. This value is quite informative because it guides us the direction towards the next stationary point of a function, in our case towards the minimum. Let us take a look at the visualized derivatives in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="n">w</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">w</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+   
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">L</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">slope</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">slope</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">L</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">-</span> <span class="n">slope</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">L</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">slope</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L(w)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_9_0.png" src="../_images/03_01_baseline_algorithms_9_0.png" />
+</div>
+</div>
+<p>If the derivative is negative we need to increase <span class="math notranslate nohighlight">\(w\)</span> (move to the right on the number line) to approach the minimum and that we need to decrease <span class="math notranslate nohighlight">\(w\)</span> (move to the left on the number line) if the derivative is positive. When we use the gradient descent method, we go a step into the direction which the gradient tells us. We decide how big the step is by setting the so called <strong>learning rate</strong> <span class="math notranslate nohighlight">\(\eta\)</span>. In order to determine a new value for <span class="math notranslate nohighlight">\(w\)</span> we assign:</p>
+<div class="math notranslate nohighlight">
+\[
+w \leftarrow w - \eta \cdot \nabla L(w)
+\]</div>
+<p>Before the first step, we need to choose a value for <span class="math notranslate nohighlight">\(w\)</span> at which we start our search for the stationary point. Typically, a random value is chosen for <span class="math notranslate nohighlight">\(w\)</span>. Let us assume, we set <span class="math notranslate nohighlight">\(w = 2\)</span> and <span class="math notranslate nohighlight">\(\eta = 0.1\)</span>. The first step is:</p>
+<div class="math notranslate nohighlight">
+\[
+w \leftarrow 2 - 0.1 \cdot 4 = 2 - 0.4
+\]</div>
+<p>So after the first step, <span class="math notranslate nohighlight">\(w = 1.6\)</span>, in the next step we have:</p>
+<div class="math notranslate nohighlight">
+\[
+w \leftarrow 1.6 - 0.1 \cdot 0.8
+\]</div>
+<p>So after the second step, <span class="math notranslate nohighlight">\(w = 1.52\)</span> which already gets close to the solution <span class="math notranslate nohighlight">\(w = 1.5\)</span>. Let us take a look how close we get after ten steps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#function for the gradient</span>
+<span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">w</span> <span class="o">-</span> <span class="mi">12</span>
+
+<span class="c1">#learning rate</span>
+<span class="n">eta</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1">#starting value for w</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">grad</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6
+1.52
+1.504
+1.5008
+1.50016
+1.500032
+1.5000064
+1.50000128
+1.500000256
+1.5000000512
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see, this works. But be aware, choosing the learning rate can be a sensitive task. Setting it too high may lead to divergence which leads away from the solution and setting it too low, may result in a very long lasting estimation process. The learning is called a <strong>hyperparameter</strong>. In contrast to the model parameters, hyperparameters are set by the user and are not estimated. In practice, different values for hyperparameters are tested. We will come back to this at a later time. Now we know what the algorithm looks like and how the model parameters are estimated. Before we talk about the identification of important features, we will simulate data according to a linear regression model and estimate its parameters with the <em>scikit-learn</em> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1">#randomly generate feature values for five feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#generate values for the target and add some random error </span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">lin_reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#print estimated parameters for w</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="c1">#print estimated parameter for b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lin_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.50340502 -1.00531832  1.99237973]
+0.9963949486055903
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-importance">
+<h3><span class="section-number">2.1.1.2. </span>Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h3>
+<p>Lastly, we want to address the question how we can find out which features are most important for the target variable. This is rather easy for the linear regression model because once feature variables are on the same scale, the effect size, i.e., the size of the estimated parameter <span class="math notranslate nohighlight">\(w_i\)</span> can be compared and used as an indicator to assess which feature is most relevant to the target variable. Behind this logic stands the idea of marginal effects and the question how much the prediction changes, if the specific feature changes by a (infinitesimal) small amount. Thus, to analyze the marginal impact of the <span class="math notranslate nohighlight">\(j\)</span>-th feature (<span class="math notranslate nohighlight">\(j = 1, ..., n\)</span>) for a given observation <span class="math notranslate nohighlight">\(i = 1, ..., m\)</span> , we look at:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \hat{f}_{\boldsymbol{w}, b}(\boldsymbol{x}_{ij})}{\partial x_{ij}} = w_j
+\]</div>
+<p>If we want the importance of the <span class="math notranslate nohighlight">\(j\)</span>-th feature for all observations <span class="math notranslate nohighlight">\(i = 1, ..., m\)</span>, we can average individual effects which again results in the estimated parameter of the <span class="math notranslate nohighlight">\(j\)</span>-th feature:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{m} \sum_{j = 1}^m \frac{\partial \hat{f}_{\boldsymbol{w}, b}(\boldsymbol{x}_{ij})}{\partial x_{ij}} = \frac{1}{m} \cdot m \cdot w_j = w_j
+\]</div>
+<p>To compare the importance among features, we can normalize the importance by:</p>
+<div class="math notranslate nohighlight">
+\[
+FI_{x_{j}} = \frac{w_j}{\sum_{j = 1}^{n} |w_j|}
+\]</div>
+<p>Due to the normalization, the importance of features can be interpreted as percentages. Let us make this more clear with the example above. For the linear regression model, we know that the average marginal effect of the change in the feature is given by its weight from the regression line. Accordingly, feature importance for our example is determined by:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_importance</span> <span class="o">=</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The relative importance of feature </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> in % is: </span><span class="si">{</span><span class="n">fi</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The relative importance of feature 1 in % is: 14.38
+The relative importance of feature 2 in % is: -28.71
+The relative importance of feature 3 in % is: 56.91
+</pre></div>
+</div>
+</div>
+</div>
+<p>This shows that features with higher weights are more important. The intuition behind this definition is that features which cause higher deviations of the predicted target if they change are most important. As you can see, with the definition above, the sign indicates also the direction of the impact.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Keep in mind that all features need to be brought to the same scale before the model parameters are estimated! This needs to be done to guarantee comparability. We will talk more about standardization in subsequent chapters.</p>
+</div>
+</div>
+</div>
+<div class="section" id="logistic-regression">
+<h2><span class="section-number">2.1.2. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<p>Logistic regression can be used for binary classification problems where the target variable has two possible outcomes. In this case, the target <span class="math notranslate nohighlight">\(Y_i\)</span> is usually treated as a Bernoulli random variable where <span class="math notranslate nohighlight">\(Y_i = 1\)</span> represents one of the two outcomes and <span class="math notranslate nohighlight">\(Y_i = 0\)</span> represents the other possibility. One building block of the logistic regression model is the regression line from Equation <a href="#mjx-eqn-linear_regression">1</a>. However the outcome according to Equation <a href="#mjx-eqn-linear_regression">1</a> can take on any value in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> and not just only <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> which we want to predict. To deal with this problem, the logistic regression model uses a transformation function which maps values from <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> to <span class="math notranslate nohighlight">\([0, 1]\)</span>. The function which is used for this purpose is the <strong>logistic</strong> function which is also called the <strong>sigmoid</strong> function and is defined as <span class="math notranslate nohighlight">\(\sigma: \mathbb{R} \to [0, 1]\)</span> with:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</div>
+<p>Please do not get confused with <span class="math notranslate nohighlight">\(\sigma\)</span> as an abbreviation for the standard deviation and <span class="math notranslate nohighlight">\(\sigma()\)</span> as a symbol for the sigmoid function. Using <span class="math notranslate nohighlight">\(\sigma()\)</span> for the sigmoid function is conventional which is why we also do so.</p>
+<p>This figure displays the sigmoid function:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">my_sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">my_sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma(z)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_01_baseline_algorithms_18_0.png" src="../_images/03_01_baseline_algorithms_18_0.png" />
+</div>
+</div>
+<p>As you can see the sigmoid function does not return <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, but values in the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>. These values can be interpreted as probabilities, i.e., the probability <span class="math notranslate nohighlight">\(\pi_i\)</span> for <span class="math notranslate nohighlight">\(P(Y_i = 1)\)</span>. Not let us bring together the linear regression line <span class="math notranslate nohighlight">\(Z_i = \boldsymbol{w}^T \boldsymbol{X}_{i}\)</span> with the sigmoid function which results in the logistic regression algorithm:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) = \frac{1}{1 + e^{- \left( \boldsymbol{w}^T \boldsymbol{X}_i + b \right)}} = \frac{1}{1 + e^{- Z_i}}
+\]</div>
+<p>It is important to understand that the logistic regression model returns conditional probabilities for <span class="math notranslate nohighlight">\(P(Y_i = 1| \boldsymbol{X}_i)\)</span>. This means given parameter estimates and feature values, an individual probability for the target <span class="math notranslate nohighlight">\(Y_i\)</span> is returned. Thus, the logistic regression model is not directly a classification model, it is a probability model whose output can be used for classification. This is done by setting a threshold <span class="math notranslate nohighlight">\(c\)</span>. If <span class="math notranslate nohighlight">\(f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) &gt; c\)</span> we predict <span class="math notranslate nohighlight">\(\hat{Y}_i = 1\)</span> and if <span class="math notranslate nohighlight">\(f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) &lt;= c\)</span> we predict <span class="math notranslate nohighlight">\(\hat{Y}_i = 0\)</span>. <span class="math notranslate nohighlight">\(c\)</span> needs to be chosen by us and does not necessarily need to be <span class="math notranslate nohighlight">\(0.5\)</span>. The value for <span class="math notranslate nohighlight">\(c\)</span> should be set with respect to the specific classification problem.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">2.1.2.1. </span>Estimation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Instead of minimizing squared deviations, we will maximize the likelihood of the data. The likelihood is given by the Bernoulli distribution. Let us denote <span class="math notranslate nohighlight">\(\pi_i\)</span> as the probability <span class="math notranslate nohighlight">\(P(Y_i = 1| \boldsymbol{X}_i)\)</span>. If <span class="math notranslate nohighlight">\(Y_i = 1\)</span>, the likelihood of data point <span class="math notranslate nohighlight">\(i\)</span> equals <span class="math notranslate nohighlight">\(\pi_i\)</span>, and, if  <span class="math notranslate nohighlight">\(Y_i = 0\)</span>, the likelihood of data point <span class="math notranslate nohighlight">\(i\)</span> equals <span class="math notranslate nohighlight">\(\left( 1 - \pi_i \right)\)</span>. This can be subsumed for one data point by:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_i^{y_i} \cdot (1 - \pi_i)^{1 - y_i}
+\]</div>
+<p>Assuming conditional independence for all data points <span class="math notranslate nohighlight">\(y_i|\boldsymbol{x}_i\)</span>, the likelihood of the data sample can be calculated by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\boldsymbol{w}, b) = \prod_{i = 1}^{m} \pi_i^{y_i} \cdot (1 - \pi_i)^{1 - y_i}
+\]</div>
+<p>and the log-likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\left( \mathcal{L}(\boldsymbol{w}, b) \right) = \sum_{i = 1}^{m} y_i \ln(\pi_i) + (1 - y_i) \ln(1 - \pi_i)
+\]</div>
+<p>Note that instead of maximizing the log-likelihood, we can also minimize the negative log-likelihood such that:</p>
+<div class="math notranslate nohighlight">
+\[
+- \ln\left( \mathcal{L}(\boldsymbol{w}, b) \right) = - \sum_{i = 1}^{m} y_i \ln(\pi_i) + (1 - y_i) \ln(1 - \pi_i)
+\]</div>
+<p>would be the corresponding loss function of the logistic regression problem. In contrast to linear regression, no closed form solution exists and parameters of the logistic regression model need to be estimated by numerical optimization methods, e.g., gradient descent. The negative log-likelihood function is called <strong>binary cross entropy</strong> loss function.</p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">2.1.2.2. </span>Feature Importance<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>We can take a look at two things, if we want to analyze which features are most important. (1) More conventional for the logistic regression model is to analyze the <strong>log-odds</strong>, (2) again we can derive the gradient of the prediction algorithm with respect to the features. Let us first take a look at the log-odds.</p>
+<p>They are defined by the natural logarithm of the ratio of the probability <span class="math notranslate nohighlight">\(\pi_i\)</span> and <span class="math notranslate nohighlight">\((1 - \pi)\)</span>. With <span class="math notranslate nohighlight">\(Z = \boldsymbol{w}^T \boldsymbol{X}_i + b\)</span> and are derived by:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln \left( \frac{\pi_i}{1 - \pi_i} \right) = \ln \left( \frac{ \frac{1}{1 + e^{-Z}} }{ 1 - \frac{1}{1 + e^{-Z}}} \right) = \ln \left( \frac{ \frac{1}{1 + e^{-Z}} }{\frac{1 + e^{-Z} - 1}{1 + e^{-Z}}} \right) = \ln \left( \frac{ \frac{1}{1 + e^{-Z}} }{\frac{e^{-Z}}{1 + e^{-Z}}} \right) = \ln \left( \frac{1}{e^{-Z}} \right) = Z = \boldsymbol{w}^T \boldsymbol{X}_i + b
+\]</div>
+<p>This means that the impact of a change in one of the features on the log-odds follows a linear relationship. Assuming all features are standardized, the feature with the biggest weight <span class="math notranslate nohighlight">\(w_j\)</span> is most important for the probability prediction of <span class="math notranslate nohighlight">\(\pi_i\)</span> and <span class="math notranslate nohighlight">\((1 - \pi_i)\)</span>, respectively. Note that we can analyze the impact of a change in the features directly on the probability prediction for <span class="math notranslate nohighlight">\(\pi_i\)</span>, however, the size of the weights must not be interpreted as for the linear regression model because the relationship between features and the probability prediction is not linear. This can be made clear when looking again at the sigmoid function in the figure above. Non-linear means that an increase in the feature differs regarding what the current value is. In the figure you can see that the value of the sigmoid function changes to a higher degree if <span class="math notranslate nohighlight">\(z\)</span> changes in the area around the origin, while a change for very low or high values of <span class="math notranslate nohighlight">\(z\)</span> hardly have an effect of the value for the sigmoid function. On the contrary, if a linear relationship exists, the dependent variable always changes to the same degree, no matter where the change of the independent variable occurs.</p>
+<p>A more general way to analyze which is the most important feature can be conducted as already seen in the last subsection. We can make use of partial derivatives. For a given data point <span class="math notranslate nohighlight">\(\boldsymbol{x}_i = (x_{i1}, ..., x_{in})\)</span>, we can derive the partial derivative</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \hat{f}_{\boldsymbol{w}, b}(\boldsymbol{x}_{ij})}{\partial x_{ij}} = \frac{\partial \hat{\pi}_i}{\partial x_{ij}}
+\]</div>
+<p>for the <span class="math notranslate nohighlight">\(j-\)</span>th feature. The idea is to ask the question how much changes the prediction for the probability <span class="math notranslate nohighlight">\(\pi_i\)</span> if the value of the <span class="math notranslate nohighlight">\(j-\)</span>th feature marginally changes, given fixed parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}, b\)</span> which are usually estimated so <span class="math notranslate nohighlight">\(\hat{\boldsymbol{w}}, \hat{b}\)</span>. As we are more interested in a general statement, we derive this sensitivity for every data point and average for the <span class="math notranslate nohighlight">\(j-\)</span>th feature over all observations <span class="math notranslate nohighlight">\(i = 1, ..., m\)</span>. For a better comparison, we normalize the result of the average sensitivity such that the sum over absolute values sums up to one, i.e., we can interpret feature importance in relative terms. Accordingly, feature importance for the logistic regression can be derived by:</p>
+<div class="math notranslate nohighlight">
+\[
+FI_{x_{j}} = \frac{1}{C} \frac{1}{m} \sum_{i = 1}^m \frac{\partial \hat{\pi}_i}{\partial x_{ij}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> ensures <span class="math notranslate nohighlight">\(\sum_{j = 1}^n |FI_{x_{j}}| = 1\)</span>. Partial derivatives can be solved by hand for the logistic regression model, but this should not be of a real concern for you, because even if you can not derive it, we will calculate derivatives using Python packages which apply automatic differentiation. Nevertheless, let us quickly take a look, how we can calculate <span class="math notranslate nohighlight">\(\frac{\partial \hat{\pi}_i}{\partial x_{ij}}\)</span>.</p>
+<p>The derivative of the sigmoid function with respect to its argument <span class="math notranslate nohighlight">\(z\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \sigma}{\partial z} = \sigma(z)\left(1 - \sigma(z)\right)
+\]</div>
+<p>If you are interested how we derive this, take a look here:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\frac{\partial \sigma}{\partial z} &amp; = &amp; \frac{\partial \left(1 + e^{-z}\right)^{-1} }{\partial z} &amp; \overset{\text{chain rule}}{=} &amp;  -1 \cdot \left(1 + e^{-z}\right)^{-2} e^{-z} (-1) &amp; = &amp; &amp;\\
+ &amp; = &amp; \frac{e^{-z}}{\left(1 + e^{-z}\right)^{2}} &amp; \overset{\text{rearrange}}{=} &amp; \frac{e^{-z}}{\left(1 + e^{-z}\right)\left(1 + e^{-z}\right)} &amp; = &amp; \frac{1}{\left(1 + e^{-z}\right)}\frac{e^{-z}}{\left(1 + e^{-z}\right)} &amp; \overset{\text{add and subtract 1}}{=} \\
+ &amp; = &amp; \frac{1}{\left(1 + e^{-z}\right)}\frac{1 + e^{-z} - 1}{\left(1 + e^{-z}\right)} &amp; = &amp; \frac{1}{\left(1 + e^{-z}\right)}\left(1 - \frac{1}{\left(1 + e^{-z}\right)} \right) &amp; = &amp; \sigma(z)\left(1 - \sigma(z)\right) &amp; &amp; 
+\end{align}
+\end{split}\]</div>
+<p>For our model we do not need to differentiate with respect to <span class="math notranslate nohighlight">\(z\)</span> but with respect to <span class="math notranslate nohighlight">\(x_{ij}\)</span>, where <span class="math notranslate nohighlight">\(z_i = \boldsymbol{w}^T \boldsymbol{x}_t + b\)</span>. So we are in need of:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \hat{\pi}_i}{\partial x_{ij}}
+\]</div>
+<p>Fortunately, with the chain rule, this can be easily derived by means of the derivative of the sigmoid function, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \hat{\pi}_i}{\partial x_{ij}} = \frac{\partial \hat{\pi}_i}{\partial \sigma{\hat{z}_i}}  \frac{\partial \hat{z}_i}{\partial x_{ij}} = \sigma(\hat{z}_i)\left(\sigma(1 - \hat{z}_i)\right) \hat{w}_j
+\]</div>
+<p>To better understand the model, estimation and the concept of feature importance take a look at the example in the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#print estimated parameters for w</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="c1">#print estimated parameter for b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.22911965 -0.91260803  0.13970364]]
+[0.60558187]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#now to understand how we would derive feature importance</span>
+<span class="c1">#we will not manually calculate derivatives, instead we</span>
+<span class="c1">#make use of the jax package which automatically derives the gradient for us</span>
+<span class="c1">#via autodifferentiation</span>
+
+<span class="c1">#therefore we need to import the jax-specific numpy package and the gradient function</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span>
+
+<span class="c1">#we define our own sigmoid function</span>
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#and the function which generates prediction with the estimated model parameters from the</span>
+<span class="c1">#code block above</span>
+<span class="k">def</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+<span class="c1">#the gradient for the prediction function with respect is automatically derived with</span>
+<span class="c1">#this statement; Note: this is the collection of partial derivatives of \pi_i with respect to x_{ij}</span>
+<span class="n">grad_prediction</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+
+<span class="c1">#we just convert the format of feature variables to make gradient calculation work</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#use the estimated model parameters</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1">#an example for partial derivatives with respect to x_{11}, x_{12} and x_{13} </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;An example for partial derivatives of the first observaion:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grad_prediction</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1">#derive the partial derivatives for each observation</span>
+<span class="n">partial_derivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">grad_prediction</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">])</span>
+
+<span class="c1">#calculate the average importance for feature j over all observations i</span>
+<span class="n">average_partiale_derivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">partial_derivatives</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#determine the normalizing constant which ensures that absolute feature importances sum up to 1</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">average_partiale_derivatives</span><span class="p">))</span>
+
+<span class="c1">#calculate feature importances</span>
+<span class="n">feature_importance</span> <span class="o">=</span> <span class="n">average_partiale_derivatives</span> <span class="o">/</span> <span class="n">C</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The relative importance of feature </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> in % is: </span><span class="si">{</span><span class="n">fi</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:absl:No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>An example for partial derivatives of the first observaion:
+[ 0.19118567 -0.14195329  0.02173046]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The relative importance of feature 1 in % is: 53.87
+The relative importance of feature 2 in % is: -40.00
+The relative importance of feature 3 in % is: 6.12
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multi-classification-regression">
+<h2><span class="section-number">2.1.3. </span>Multi-Classification Regression<a class="headerlink" href="#multi-classification-regression" title="Permalink to this headline">¶</a></h2>
+<p>If the task is to analyze a categorical target variable with more than two outcomes, we have multiple options. Traditional regression methods like multinomial or ordinary regression or more flexible approaches like neural networks. We will not discuss these methods in detail at this point, however, simply try to apply the idea which has been used to adjust the linear regression algorithm to a binary target variable. As before if <span class="math notranslate nohighlight">\(Y_i\)</span> has multiple categories we can not make predictions by Equation <a href="#mjx-eqn-linear_regression">1</a> which results in arbitrary values in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. For the binary classification, the regression line was transformed to return probabilities for the categories. As we had only two categories, it was enough to define the probability for <span class="math notranslate nohighlight">\(P(Y_i = 1)\)</span> because this also defines the probability <span class="math notranslate nohighlight">\(P(Y_i = 0) = 1 - P(Y_i = 1)\)</span>. If <span class="math notranslate nohighlight">\(Y_i\)</span> has more than two categories, this idea needs to be extended, i.e., with <span class="math notranslate nohighlight">\(K\)</span> categories at least <span class="math notranslate nohighlight">\(K-1\)</span> probabilities need to be determined or we simply model a probability for each category. Given <span class="math notranslate nohighlight">\(n\)</span> feature variables we could set up an equation system in which we use one equation for each category <span class="math notranslate nohighlight">\(k = 1, ..., K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+Z_1 &amp; = w_{11} X_{i1} + w_{12} X_{i2} + ... + w_{1n} X_{in} + b_1 \\
+Z_2 &amp; = w_{21} X_{i1} + w_{22} X_{i2} + ... + w_{2n} X_{in} + b_2 \\
+\vdots &amp; = \vdots \\
+Z_K &amp; = w_{K1} X_{i3} + w_{K2} X_{i3} + ... + w_{Kn} X_{in} + b_3 \\
+\end{align}
+\end{split}\]</div>
+<p>For convenience, we use matrix notation</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{Z}_i = \boldsymbol{X}_i^T W + \boldsymbol{b}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\boldsymbol{Z}_i = (Z_{1i}, ..., Z_{Ki}) \in \mathbb{R}^K\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{X}_i = (X_{i1}, ..., X_{in}) \in \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(W \in \mathbb{R}^{n \times K}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{b} \in \mathbb{R}^K\)</span>.</p>
+<p>Note that for each category, feature values are the same, but the weights and biases differ. For the equations above <span class="math notranslate nohighlight">\(Z_k\)</span> can have arbitrary values and we want probabilities for <span class="math notranslate nohighlight">\(P(Y_i = k) = \pi_{ki}, k = 1, ..., K\)</span>. As before we can make use of a transformation function which fits our need, i.e., the <strong>softmax</strong> function. It is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{ki} = \frac{e^{Z_k}}{\sum_j e^{Z_j}}
+\]</div>
+<p>Maybe it does not look as intuitive as it is. For each category, we want a probability which by definition is in <span class="math notranslate nohighlight">\([0, 1]\)</span>. In the equation system above each <span class="math notranslate nohighlight">\(Z_k\)</span> is in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. By making use of the <span class="math notranslate nohighlight">\(e\)</span>-function each <span class="math notranslate nohighlight">\(e^{Z_k}\)</span> is in <span class="math notranslate nohighlight">\((0, \infty)\)</span>, which means we fulfill the first requirement for a probability, <span class="math notranslate nohighlight">\(\pi_{ki} \geq 0\)</span>. Now, to make sure that the sum of probabilities for disjoint events sums up to one, we need a normalization for each <span class="math notranslate nohighlight">\(e^{Z_k}\)</span>. This is solved by summing over all <span class="math notranslate nohighlight">\(e^{Z_k}\)</span> values which we denote by <span class="math notranslate nohighlight">\(\sum_j e^{z_j}\)</span>. Assume, we have three categories and three values <span class="math notranslate nohighlight">\(z_1 = -1.0, z_2 = 0.7, z_3 = 0.2\)</span>. Using the <span class="math notranslate nohighlight">\(e\)</span>-function, this leads to <span class="math notranslate nohighlight">\(e^{z_1} = 0.3679, e^{z_2} = 2.0138, e^{z_3} = 1.2214\)</span>, all values are now greater than <span class="math notranslate nohighlight">\(0\)</span>. To determine the normalization, we add up: <span class="math notranslate nohighlight">\(e^{z_1} + e^{z_2} + e^{z_3} = 0.3679 + 2.0138 + 1.2214 = 3.6031\)</span>. Using this in the denominator, it results:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\pi_{1i} = \frac{0.3679}{3.6031} = 0.1021 \\
+\pi_{2i} = \frac{2.0138}{3.6031} = 0.5589 \\
+\pi_{3i} = \frac{1.2214}{3.6031} = 0.3390 \\
+\end{align}
+\end{split}\]</div>
+<p>As you can see, it holds that: <span class="math notranslate nohighlight">\(\sum_k \pi_{ki} = 1\)</span>.</p>
+<p>Now you know how the probability  for each observation belonging to category <span class="math notranslate nohighlight">\(k\)</span> can be determined for a given observation <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span>, once model parameters are estimated.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be aware that estimation and feature importance for this type of multi-classification model is already rather sophisticated and beyond expectations regarding your current knowledge of these methods. However, for completeness, we illustrate them below and you are welcome to get an idea how it works. Just do not become discouraged if you do not understand it holistically.</p>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">2.1.3.1. </span>Estimation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>In analogy to the logistic regression, we can estimate parameters by maximizing the likelihood of a categorical distribution. The likelihood of an observation <span class="math notranslate nohighlight">\(Y_i = y_i = k\)</span> equals the probability for category <span class="math notranslate nohighlight">\(k\)</span>, i.e, <span class="math notranslate nohighlight">\(\pi_{ki}\)</span>. Thus, for a data sample, the joint likelihood is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(W, b) = \prod_{i = 1}^m \prod_{k = 1}^K  \pi_{ki}^{[y_i = k]}
+\]</div>
+<p>Basically, this is the product of categorical probabilities of categories which are observed. To make notation easier, let us define <span class="math notranslate nohighlight">\(Y_{ki}\)</span> which is equal to <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(Y_i = k\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise. Thus, the likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(W, b) = \prod_{i = 1}^m \pi_{ki}^{y_{ki}}
+\]</div>
+<p>and the log-likelihood is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln \left( \mathcal{L}(W, b) \right) = \sum_{i = 1}^m y_{ki} \ln \left( \pi_{ki} \right)
+\]</div>
+<p>Typically, optimization problems are presented as minimization problems. Instead of maximizing the log-likelihood, one minimizes:</p>
+<div class="math notranslate nohighlight">
+\[
+- \ln \left( \mathcal{L}(W, b) \right) = - \sum_{i = 1}^m y_{ki} \ln \left( \pi_{ki} \right)
+\]</div>
+<p>which is called the <strong>categorical crossentropy</strong> function. As before, parameters can be estimated by gradient descent, for which several Python packages can be used.</p>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">2.1.3.2. </span>Feature Importance<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The idea to derive feature importance by determining marginal sensitivities of predictions with respect to changes in features can be also used for the multi-classification model. However, we need to determine marginal sensitivities for each probability prediction. In concrete, our model consists of a system with <span class="math notranslate nohighlight">\(K\)</span> functions which are used to predict probabilities for each category and, hereby, make use of <span class="math notranslate nohighlight">\(n\)</span> features as input. In mathematical notation this is a mapping <span class="math notranslate nohighlight">\(\mathbb{R}^n \to [0,1]^K\)</span> with <span class="math notranslate nohighlight">\(\boldsymbol{X}_i \to \boldsymbol{f} \left(\boldsymbol{X}_i^T W + \boldsymbol{b}\right) \)</span>. <span class="math notranslate nohighlight">\(\boldsymbol{f}\)</span> represents the softmax function which is applied to each category, i.e., <span class="math notranslate nohighlight">\(\pi_{1i} = f_1(\boldsymbol{X}_i^T \boldsymbol{w}_{\cdot 1} + b_1), ..., \pi_{Ki} = f_K(\boldsymbol{X}_i^T \boldsymbol{w}_{\cdot K} + b_K)\)</span>. Building derivatives of each function <span class="math notranslate nohighlight">\(f_1, ..., f_k\)</span> with respect to each feature <span class="math notranslate nohighlight">\(X_{i1}, ..., X_{in}\)</span> is stored in the <strong>Jabobian</strong> matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J_f(\boldsymbol{X}_i) = 
+\left(
+\begin{align}
+\frac{\partial f_1(\boldsymbol{X}_i)}{\partial X_{i1}} &amp; &amp; ... &amp; &amp; \frac{\partial f_1(\boldsymbol{X}_i)}{\partial X_{in}} \\
+\vdots &amp; &amp; \vdots &amp; &amp; \vdots \\
+\frac{\partial f_K(\boldsymbol{X}_i)}{\partial X_{i1}} &amp; &amp; ... &amp; &amp; \frac{\partial f_K(\boldsymbol{X}_i)}{\partial X_{in}} \\
+\end{align}
+\right)
+\end{split}\]</div>
+<p>This can be done with another Python package. In this context, it is important to understand that we derive the Jacobian for every observation <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> and, as before, average over ever entry <span class="math notranslate nohighlight">\(k,n\)</span> to estimate global importance of feature <span class="math notranslate nohighlight">\(j\)</span> with respect to probability of category <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+FI_{x_{kj}} = \frac{1}{C_k} \frac{1}{m} \sum_{i = 1}^m \frac{\partial \hat{\pi}_{ki}}{\partial x_{ij}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_k\)</span> ensures <span class="math notranslate nohighlight">\(\sum_{j = 1}^n |FI_{x_{kj}}| = 1\)</span>, such that importances sum up to one for each category <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">zk</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">))</span> <span class="k">for</span> <span class="n">zk</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span>
+
+<span class="c1">#simulate a random data sample</span>
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1), P(Y_i = 2), P(Y_i = 3) </span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="n">softmax</span><span class="p">(</span><span class="n">z_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">z_i</span> <span class="ow">in</span> <span class="n">Z</span><span class="p">]</span>
+
+<span class="c1">#draw random observations for Y_i, given probabilities pi_i</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p_i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">p_i</span> <span class="ow">in</span> <span class="n">pi</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax.nn</span> <span class="kn">import</span> <span class="n">softmax</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span>
+
+<span class="c1">#super slow and very quick and dirty implementation</span>
+
+<span class="c1">#function for making probability predictions</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+
+<span class="c1">#function</span>
+<span class="k">def</span> <span class="nf">cat_crossentropy</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">pi_est</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pi_est</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Y</span><span class="p">)]))</span>
+
+<span class="c1">#Gradient with respect to weights and bias</span>
+<span class="n">gradient</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">cat_crossentropy</span><span class="p">,</span> <span class="n">argnums</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#initialize random weights and bias</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">W_est</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">b_est</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="c1">#learning rate for gradient descent</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="c1">#starting value of the crossentropy</span>
+<span class="n">crossentropy</span> <span class="o">=</span> <span class="n">cat_crossentropy</span><span class="p">(</span><span class="n">W_est</span><span class="p">,</span> <span class="n">b_est</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#in a loop, do ...</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1">#derive the current value of the gradient</span>
+    <span class="n">W_grad</span><span class="p">,</span> <span class="n">b_grad</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(</span><span class="n">W_est</span><span class="p">,</span> <span class="n">b_est</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    
+    <span class="c1">#update parameters by gradient descent step</span>
+    <span class="n">W_est</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">W_grad</span>
+    <span class="n">b_est</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">b_grad</span>
+
+    <span class="c1">#current cross_entropy</span>
+    <span class="n">crossentropy_tmp</span> <span class="o">=</span> <span class="n">cat_crossentropy</span><span class="p">(</span><span class="n">W_est</span><span class="p">,</span> <span class="n">b_est</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    
+    <span class="c1">#if crossentropy increases, we overstepped the local minimum, then stop</span>
+    <span class="k">if</span> <span class="n">crossentropy_tmp</span> <span class="o">&gt;</span> <span class="n">crossentropy</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">crossentropy</span> <span class="o">=</span> <span class="n">crossentropy_tmp</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The current loss is: </span><span class="si">{</span><span class="n">crossentropy</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is the original weights matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is the estimated weights matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W_est</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;These are original bias values:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;These are estimated bias values:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b_est</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...not too bad!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current loss is: 701.34
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current loss is: 683.80
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current loss is: 673.41
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current loss is: 667.12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current loss is: 663.23
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax.nn</span> <span class="kn">import</span> <span class="n">softmax</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">jacfwd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#now we switch sides as we are interested in partial derivatives</span>
+<span class="c1">#of each probability prediction with respect to each feature</span>
+
+<span class="c1">#we define a prediction just to clearly separate it from the previous function</span>
+<span class="k">def</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W_est</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_est</span><span class="p">)</span>
+
+<span class="c1">#function to derive the jacobian</span>
+<span class="n">prediction_jacobian</span> <span class="o">=</span> <span class="n">jacfwd</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+
+<span class="c1">#placeholders for partial derivatives with respect to each feature for each probabilty prediction</span>
+<span class="n">pi_one_derivatives</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pi_two_derivatives</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pi_three_derivatives</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#for each data point get the jacobian and save partial derivatives</span>
+<span class="c1">#for each prediction in their placeholders</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+    <span class="n">jacobian_tmp</span> <span class="o">=</span> <span class="n">prediction_jacobian</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">pi_one_derivatives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jacobian_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">pi_two_derivatives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jacobian_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">pi_three_derivatives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jacobian_tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1">#determine average feature importance for probability predictions P(Y_i = 1)</span>
+<span class="n">feature_importance_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pi_one_derivatives</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">feature_importance_one</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">feature_importance_one</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feature_importance_one</span><span class="p">]</span>
+
+<span class="c1">#determine average feature importance for probability predictions P(Y_i = 2)</span>
+<span class="n">feature_importance_two</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pi_two_derivatives</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">feature_importance_two</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">feature_importance_two</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feature_importance_two</span><span class="p">]</span>
+
+<span class="c1">#determine average feature importance for probability predictions P(Y_i = 3)</span>
+<span class="n">feature_importance_three</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pi_three_derivatives</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">feature_importance_three</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">feature_importance_three</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feature_importance_three</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feature importance for the probability of P(Y_i = 1)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance_one</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The relative importance of feature </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> in % is: </span><span class="si">{</span><span class="n">fi</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feature importance for the probability of P(Y_i = 2)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance_two</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The relative importance of feature </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> in % is: </span><span class="si">{</span><span class="n">fi</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feature importance for the probability of P(Y_i = 3)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance_three</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The relative importance of feature </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> in % is: </span><span class="si">{</span><span class="n">fi</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...results make sense when looking at parameter weights!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W_est</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...however impact sizes for categories Y_i = 2 and Y_i = 3 seem to be a little mixed up!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary-of-baseline-algorithms">
+<h2><span class="section-number">2.1.4. </span>Summary of Baseline Algorithms<a class="headerlink" href="#summary-of-baseline-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>What can we learn from these algorithms to generate a general understanding of supervised learning models? You may already have noticed a repeating pattern when reading each subsection. Every algorithm has an affine function, <span class="math notranslate nohighlight">\(\boldsymbol{w}^T \boldsymbol{X}_{i} + b\)</span>, as a building block. For every algorithm, the affine function gets transformed with another function <span class="math notranslate nohighlight">\(g\)</span>. The purpose of this transformation is to bring the predicted variable on the scale which is needed for the learning problem, i.e., the scale of the target variable. Once the algorithm is specified, model parameters are estimated by minimizing a loss function. The loss function is chosen according to the learning problem. The table below summarizes this structure of the models:</p>
+<br>
+<table style="width:80%;">
+    <colgroup>
+       <col span="1" style="width: 10%;" >
+       <col span="1" style="width: 25%;">
+       <col span="1" style="width: 25%;">
+       <col span="1" style="width: 40%;">
+    </colgroup>
+<tbody>
+  <tr>
+      <th> Problem </th>  <th> Algorithm </th> <th> Transformation </th> <th> Loss function </th>
+  </tr>  
+  <tr>
+      <td> Regression </td>
+      <td> $f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) = \boldsymbol{w}^T \boldsymbol{X}_{i} + b$ </td>
+      <td> $g: \mathbb{R} \to \mathbb{R}$, $g(z) = z$ </td>
+      <td> $L(\boldsymbol{w}^T, b)= \sum_{i = 1}^m \left( y_i - f_{\boldsymbol{w}, b}(\boldsymbol{x}_i) \right)^2$ </td>
+  </tr>  
+  <tr>
+      <td> Classification </td>
+      <td> $\pi_i = f_{\boldsymbol{w}, b}(\boldsymbol{X}_i) = \frac{1}{1 + e^{- \left( \boldsymbol{w}^T \boldsymbol{X}_i + b \right)}}$ </td>
+      <td> $f: \mathbb{R} \to [0,1]$, $g(z) = \frac{1}{1 + e^{-z}}$ </td>
+      <td> $L(\boldsymbol{w}^T, b) = - \sum_{i = 1}^{m} y_i \ln(\pi_i) + (1 - y_i) \ln(1 - \pi_i)$ </td>
+  </tr>  
+  <tr>
+      <td> Multi-classification </td>
+      <td> $\pi_{ki} = f_{\boldsymbol{w_k}, b_k}(\boldsymbol{X}_i) = \frac{e^{\boldsymbol{w_k}^T \boldsymbol{X}_i + b_k}}{\sum_j e^{\boldsymbol{w_j}^T \boldsymbol{X}_i + b_j}}$ </td>
+      <td> $f: \mathbb{R} \to [0,1]^K$, $g_k(z) = \frac{e^{z_k}}{\sum_j e^{z_j}}$ </td>
+      <td> $L(\boldsymbol{W}, \boldsymbol{b}) = - \sum_{i = 1}^m y_{ki} \ln \left( \pi_{ki} \right)$ </td>
+  </tr>  
+    </tbody>
+</table></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="03_supervised_learning.html" title="previous page"><span class="section-number">2. </span>Supervised Learning</a>
+    <a class='right-next' id="next-link" href="03_02_blueprint_supervised_learning.html" title="next page"><span class="section-number">2.2. </span>A blueprint for conducting supervised learning problems</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

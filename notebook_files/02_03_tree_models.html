@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.3. Tree based models &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Neural Networks" href="03_neural_networks.html" />
+    <link rel="prev" title="2.2. A blueprint for conducting supervised learning problems" href="02_02_blueprint_supervised_learning.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="02_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_01_baseline_algorithms.html">
+     2.1. Baseline algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_02_blueprint_supervised_learning.html">
+     2.2. A blueprint for conducting supervised learning problems
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.3. Tree based models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_unsupervised_learning.html">
+   4. Unsupervised Learning
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/02_03_tree_models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/02_03_tree_models.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/02_03_tree_models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-trees">
+   2.3.1. Regression Trees
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees">
+   2.3.2. Decision Trees
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-importance-for-trees">
+   2.3.3. Feature importance for Trees
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bagging-random-forests-and-boosting">
+   2.3.4. Bagging, Random Forests and Boosting
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tree-based-models">
+<h1><span class="section-number">2.3. </span>Tree based models<a class="headerlink" href="#tree-based-models" title="Permalink to this headline">¶</a></h1>
+<p>So far we discussed baseline models which all consist of an algorithm with a linear predictor function in combination with a transformation suited to the learning problem. The function depends on a set of parameters which is estimated with training data.</p>
+<p>Nowadays, a great variety of different models exists which provides a broad range of model flexibility. While it is not our aim to discuss all these models, I want to discuss two different model types in this and the next section: (1) tree based models and (2) neural networks. Both types perform very well for a broad range of learning problems and it is worth discussing them both in detail, because their architecture differs but each approach is interesting on their own.</p>
+<p>The name tree based models already reveals their architecture. They can be used for regression and classification problem and the main idea is to split the predictor space such that for each subspace, predictions are made which lead to an overall good performance for the whole data set.</p>
+<div class="section" id="regression-trees">
+<h2><span class="section-number">2.3.1. </span>Regression Trees<a class="headerlink" href="#regression-trees" title="Permalink to this headline">¶</a></h2>
+<p>Take a look in the figure below which exhibits in the left plot a relationship between two features <span class="math notranslate nohighlight">\(\boldsymbol{X}_1\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{X}_2\)</span>. Assume each data point is related to a metric value for a target <span class="math notranslate nohighlight">\(Y_i\)</span>. In the figure, all data points are divided into three rectangles <span class="math notranslate nohighlight">\(R_1, R_2, R_3\)</span>, while each split is defined by a split point <span class="math notranslate nohighlight">\(s\)</span>. In the right plot, we can see how each region can be found. For instance, if <span class="math notranslate nohighlight">\(X_{i1} \leq -0.96\)</span> and <span class="math notranslate nohighlight">\(X_{i2} &gt; 0.668\)</span>, we are in region <span class="math notranslate nohighlight">\(R_3\)</span>. If we want to make predictions for the target variable, we use average observations of the targets in the rectangle. For instance if feature values for a given observation <span class="math notranslate nohighlight">\(i\)</span> bring us to region <span class="math notranslate nohighlight">\(R_3\)</span>, the average value of <span class="math notranslate nohighlight">\(y_i \in R_3\)</span> is used for prediction.</p>
+<p>As you may have guessed, this idea is what is called a <strong>regression tree</strong>. It is called a tree because of the tree like structure which can be seen in the right plot. The structure follows split points which leads to a set of nodes and edges. Each terminal node, also called leaf, represents a certain region in the left plot.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">)</span>
+<span class="n">x_2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">x_1</span> <span class="o">-</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">x_1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x_1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x_2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">x_1</span> <span class="o">+</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">x_2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">ccp_alpha</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.96</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.96</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$R_1$&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$R_2$&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$R_3$&#39;</span><span class="p">)</span>
+
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">dtr</span><span class="p">,</span> <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_03_tree_models_1_0.png" src="../_images/02_03_tree_models_1_0.png" />
+</div>
+</div>
+<p>Okay, but how do we derive a regression tree? As before, building a regression tree consists of finding an algorithm which provides estimates for the target variable and appropriately adjusting this algorithm to training data such that the prediction mechanism genralizes, i.e., also leads to good model performance of training data. If the learning problem is a regression problem, we again aim to minimize squared deviations between predictions and observations. Given a number of regions <span class="math notranslate nohighlight">\(R_1, ..., R_L\)</span>, the model loss can be derived by:</p>
+<div class="math notranslate nohighlight">
+\[
+RSS = \sum_{l = 1}^L \sum_{i \in R_l} \left(y_i - \hat{y}_{R_l}\right)^2
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}_{R_l} = \frac{1}{\# \lbrace y_i | y_i \in R_l  \rbrace} \sum_{i \in R_l} y_i
+\]</div>
+<p>The value of the loss function can be altered by choosing feature variable <span class="math notranslate nohighlight">\(j\)</span> and split point <span class="math notranslate nohighlight">\(s\)</span>. As we can not analyze the loss function for all possible partitions of the feature space, so called <strong>recursive binary splitting</strong> is used to approach the best possible split of the data. Starting from the top of the tree, among all features <span class="math notranslate nohighlight">\(\boldsymbol{X}_1, ..., \boldsymbol{X}_n\)</span> we are searching for the feature <span class="math notranslate nohighlight">\(j\)</span> and the split point <span class="math notranslate nohighlight">\(s\)</span> which reduces the <span class="math notranslate nohighlight">\(RSS\)</span> to the highest extent. More concrete, with the choice of <span class="math notranslate nohighlight">\((j, s)\)</span> and <span class="math notranslate nohighlight">\(R_1(j, s) = \lbrace \boldsymbol{X} | \boldsymbol{X}_j \leq s \rbrace\)</span> and <span class="math notranslate nohighlight">\(R_2(j, s) = \lbrace \boldsymbol{X} | \boldsymbol{X}_j &gt; s \rbrace\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i \in R_1(j, s)} \left(y_i - \hat{y}_{R_1} \right)^2 + \sum_{i \in R_2(j, s)} \left(y_i - \hat{y}_{R_2} \right)^2
+\]</div>
+<p>is minimized. This is how the first split is defined. After that the procedure is repeated on <span class="math notranslate nohighlight">\(R_1\)</span> or R_2, depending for which partition the RSS can be most reduced.</p>
+<p>If no stopping condition is set, this procedure can be continued until the training data if perfectly predicted by the tree, because we can use as many splits as data points. This will lead to massive overfitting and high predictor variance for different data sets. Accordingly, the tree splitting process must be stopped at a certain point to avoid overfitting. Different possibilities exists for this purpose.</p>
+<ol class="simple">
+<li><p>We can reduced the maximum tree depth</p></li>
+<li><p>We can set a minimum number of observations for each leaf</p></li>
+<li><p>Define a minimum number of samples for splitting nodes</p></li>
+<li><p>Define a minimum improvement of the loss which needs to be achieved by a split</p></li>
+<li><p>Prune the tree in hindsight</p></li>
+</ol>
+<p>While the first four possibilities hopefully explain themselves, we may need to talk about <strong>pruning</strong>. It picks up the idea of regularization and might be a better way for finding the best tree structure than simply cutting the tree nodes like it is done when setting a maximum tree depth or defining minimum improvements per split. Imagine a certain split does not lead to a high improvement of the model, but is necessary for finding the next split which leads to a significant improvement of the model. In order to find such trees, pruning first estimates a very large tree <span class="math notranslate nohighlight">\(T_0\)</span> and then searches for a subtree which balances the trade-off between complexity, adjustment to training data and generalization. Setting a hyperparameter <span class="math notranslate nohighlight">\(\alpha\)</span>, a subtree <span class="math notranslate nohighlight">\(T \subset T_0\)</span> with a lower number of terminal nodes <span class="math notranslate nohighlight">\(|T| &lt; |T_0|\)</span> is searched such that</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{l = 1}^{|T|} \sum_{i \in R_l} \left(y_i - \hat{y}_{R_l}\right)^2 + \alpha |T|
+\]</div>
+<p>As you can see, the higher <span class="math notranslate nohighlight">\(\alpha\)</span>, the more more complex trees with a higher number of leafs are penalized. As for all models with hyperparameters, values are searched by splitting the data into, training, validation and test data. Only model which lead to comparably good results for training and validation data should be chosen and finally evaluated on test data. To get a better feeling for growing regression trees, let us take a look at a few examples. For a simulated data set, a full regression tree without stopping criteria looks like this:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#generate metric target variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1">#if we do not set any barriers during estimatin, the tree fits the training data perfectly</span>
+<span class="c1">#this leads to overfitting</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+
+<span class="c1">#fit the tree</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#visualize the tree</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">dtr</span><span class="p">,</span> <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we set the tree depth to two, a very simple version of it results.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#define a decision tree for regression</span>
+<span class="c1">#for better visibility, we first fit a tree with a fixed depth of two</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#fit the tree</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#visualize the tree</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">dtr</span><span class="p">,</span> <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_03_tree_models_5_0.png" src="../_images/02_03_tree_models_5_0.png" />
+</div>
+</div>
+<p>Fixing the number of minimum samples per leaf strongly depends on the number of observations in the training data and model complexity. In our example, data contains 1,000 observations. Setting the minimum number per leaf to 100, results in a tree as can be seen here.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we may stop splitting nodes if the number per node are below a minimum value</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#fit the tree</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#visualize the tree</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">dtr</span><span class="p">,</span> <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_03_tree_models_7_0.png" src="../_images/02_03_tree_models_7_0.png" />
+</div>
+</div>
+<p>Another alternative is given by pruning the tree which is controlled by setting <span class="math notranslate nohighlight">\(\alpha\)</span>. Reasonable ranges for <span class="math notranslate nohighlight">\(\alpha\)</span> also depend on the data and need to be tested anyway when optimizing the hyperparameter. For instance, a value <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span> results in the following structure.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we may use of tree pruning which is controlled by ccp_alpha</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">ccp_alpha</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1">#fit the tree</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">dtr</span><span class="o">.</span><span class="n">cost_complexity_pruning_path</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ccp_alphas</span><span class="p">,</span> <span class="n">impurities</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">ccp_alphas</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">impurities</span>
+
+<span class="c1">#visualize the tree</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">dtr</span><span class="p">,</span> <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_03_tree_models_9_0.png" src="../_images/02_03_tree_models_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="decision-trees">
+<h2><span class="section-number">2.3.2. </span>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h2>
+<p>So far, we examined a regression problem. How do we derive trees for classification problems? More or less in the same manner, however, we can not use <span class="math notranslate nohighlight">\(RSS\)</span> to evaluate model performance. Instead, we need a loss function which is suited for the classification problem. Intuitively, we may want to minimize the classification error. However, it has been found that this does not lead to qualitative tree structures. Instead, at each split either the <strong>Gini index</strong> or <strong>cross-entropy</strong> is used to evaluate the quality of the split. The Gini index <span class="math notranslate nohighlight">\(G\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+G = \sum_k \hat{p}_{lk} (1 - \hat{p}_{lk})
+\]</div>
+<p>and cross-entropy <span class="math notranslate nohighlight">\(H\)</span> is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+H = - \sum_k \hat{p}_{lk} \log \hat{p}_{lk}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\hat{p}_{lk}\)</span> represents the fraction of training observations from class <span class="math notranslate nohighlight">\(k\)</span> in the region <span class="math notranslate nohighlight">\(l\)</span>. So basically, we are making a frequency-based probability prediction for <span class="math notranslate nohighlight">\(P(Y_i = k)\)</span> which is based on the degree of categorical dominance in a certain region <span class="math notranslate nohighlight">\(l\)</span>. Both <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(H\)</span> are return lower values for regions which are characterized by high categorical class dominance. Intuitively, this means splits are preferable which result in leafs that contain observations from the same category. Also note that minimizing cross-entropy is directly related to likelihood maximization.</p>
+</div>
+<div class="section" id="feature-importance-for-trees">
+<h2><span class="section-number">2.3.3. </span>Feature importance for Trees<a class="headerlink" href="#feature-importance-for-trees" title="Permalink to this headline">¶</a></h2>
+<p>Trees are popular because it can be visualized and easily understood how predictions are generated. This already gives a first impression which of the features are most important, because the ones which are chosen first, are the ones which reduce the loss objective the most and, thus, are most important for predicting the target. To quantify feature importance, we may derive the relative reduction of the overall loss objective, e.g., <span class="math notranslate nohighlight">\(RSS\)</span> for regression trees and the <span class="math notranslate nohighlight">\(G\)</span> for decision trees, for each feature.</p>
+</div>
+<div class="section" id="bagging-random-forests-and-boosting">
+<h2><span class="section-number">2.3.4. </span>Bagging, Random Forests and Boosting<a class="headerlink" href="#bagging-random-forests-and-boosting" title="Permalink to this headline">¶</a></h2>
+<p>In general, an important technique for machine learning algorithms is given by <strong>ensemble learning</strong>. This approach uses the wisdom of the crowd by averaging predictions of various prediction models. Intuitively, while some predictions maybe too low, others will be too high which on average leads to accurate predictions. Statistically, the great advantage of ensemble learning lies in estimator variance reduction which is of special relevance for tree based methods.</p>
+<p>Remember, that if not limited by an adequate hyperparameter choice, trees can be adjusted perfectly to training data  which leads to overfitting in addition with high variance of estimated predictors for different data sets. High variance is disadvantageous, because it may lead to very high deviations from adequate predictions for certain data sets. Also remember, that for <span class="math notranslate nohighlight">\(m\)</span> independent random variables <span class="math notranslate nohighlight">\(X_1, ..., X_m\)</span> with variance <span class="math notranslate nohighlight">\(\sigma_{X_i}^2\)</span>, the estimator <span class="math notranslate nohighlight">\(\bar{X} = \frac{1}{n} \sum_i X_i\)</span> has only a variance of <span class="math notranslate nohighlight">\(\sigma_{\bar{X}} = \frac{\sigma_{X_i}^2}{m}\)</span>. Accordingly, the idea of ensemble learning is to generate a certain number of different prediction models and average over these predictions to generate final predictions with low variance.</p>
+<p>This concept is applicable for different algorithms, but very useful for regression and decision trees. But how do we generate different predictors, i.e., different algorithms? We sample a subset <span class="math notranslate nohighlight">\(b\)</span> of the data, which is not identical to the overall data set, and fit a tree which is denoted by <span class="math notranslate nohighlight">\(\hat{f}^b\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> stands for the <span class="math notranslate nohighlight">\(b\)</span> bootstrapped sample of the overall data set. Note that sample size of the bootstrapped sample does not necessarily be smaller than the original data set, because we can draw individual samples with replacement. This will lead to sampled data sets which may contain duplicated observations and will not contain a certain number of observations from the original data set. After sampling <span class="math notranslate nohighlight">\(B\)</span> data sets, we have grown <span class="math notranslate nohighlight">\(f^1, ..., f^B\)</span> trees which can be used to generate <span class="math notranslate nohighlight">\(B\)</span> predictions <span class="math notranslate nohighlight">\(\hat{f}^b (\boldsymbol{x}_i), ..., \hat{f}^B(\boldsymbol{x}_i)\)</span> for an observation <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span>. Finally, the prediction which we use is given by averaging, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}_i = \frac{1}{B} \sum_b \hat{f}^b (\boldsymbol{x}_i)
+\]</div>
+<p>If our goal is to provide a categorical prediction, we can use a majority vote over all bootstrapped predictions, i.e., the category which is predicted the most over all samples <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>If we proceed like this, we make use of <strong>bagging</strong>. Bagging might run into problems if trees for different data samples are too similar. This will lead to highly correlated trees such that variance reduction is diminished. The reason for high correlation could lie in feature importance, e.g., one feature might be very important and is selected always first in the tree. To reduce this potential disadvantage a technique called <strong>random forest</strong> is chosen. Random forests are constructed exactly as the bagging approach with the exception that only a subset of features is used for each tree. A typical choice is to use <span class="math notranslate nohighlight">\(\sqrt{n}\)</span> features for each single tree. By this means, trees are less correlated which increases variance reduction among predictors.</p>
+<p>As a certain number of observations is not used for training for each bootstrapped sample, these observations can be used for testing the model. If observation <span class="math notranslate nohighlight">\(i\)</span> is not used for training, we can make a prediction and record it. To generate a prediction for this observation, all predictions from samples which did not use this observation for training are averaged (for regression problems) or selected according to a majority vote (for classification problems). By this way out of sample predictions are generated and out of sample performance can be evaluated.</p>
+<p>For bagging as well as for random forests each tree is fully grown for the sampled data set. Another approach which also belongs to ensemble learning is <strong>boosting</strong>. Boosting does not fully grow a tree for one data sample and then continues with the next sample, its technique makes use of an iterative approach among trees. As the illustration of the concrete approach is different in its nature from bagging and random forests, its illustration is beyond the scope of this book, which is  why we skip its illustration.</p>
+<p>Unfortunately, the presented methods in this subsection loose their intuitive interpretability in comparison to single tree models. Nevertheless, feature importance can be derived in a similar manner as described before. For each tree, the reduction in the loss objective is recorded for each feature and averaged over each bootstrapped sample.</p>
+<p>Finally, we provide three code snippets which demonstrate the use of bagging, random forests and boosting for a categorical prediction problem with two classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">BaggingClassifier</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">##################################</span>
+<span class="c1">#Bagging       </span>
+<span class="c1">##################################</span>
+
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1">#define a bagging model</span>
+<span class="n">bagging_model</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(),</span>
+                                 <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+                                 <span class="n">max_samples</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> 
+                                 <span class="n">oob_score</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">bagging_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#out of bag performance</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predictive accuracy for out of sample predictions: </span><span class="si">{</span><span class="n">bagging_model</span><span class="o">.</span><span class="n">oob_score_</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#determine which feature is most important</span>
+<span class="n">feature_importances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">bagging_model</span><span class="o">.</span><span class="n">estimators_</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative importance of feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> in %: </span><span class="si">{</span><span class="n">feat</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictive accuracy for out of sample predictions: 0.7110
+Relative importance of feature 1 in %: 42.65
+Relative importance of feature 2 in %: 35.55
+Relative importance of feature 3 in %: 21.80
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">##################################</span>
+<span class="c1">#Random Forest       </span>
+<span class="c1">##################################</span>
+
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1">#define the random forest, for each tree, we only use two features: max_features = 2</span>
+<span class="n">random_forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+                                       <span class="n">max_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                                       <span class="n">oob_score</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">random_forest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#out of bag performance</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predictive accuracy for out of sample predictions: </span><span class="si">{</span><span class="n">random_forest</span><span class="o">.</span><span class="n">oob_score_</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#determine which feature is most important</span>
+<span class="n">feature_importances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">random_forest</span><span class="o">.</span><span class="n">estimators_</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative importance of feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> in %: </span><span class="si">{</span><span class="n">feat</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictive accuracy for out of sample predictions: 0.7100
+Relative importance of feature 1 in %: 42.63
+Relative importance of feature 2 in %: 35.34
+Relative importance of feature 3 in %: 22.03
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="c1">##################################</span>
+<span class="c1">#Boosting       </span>
+<span class="c1">##################################</span>
+
+
+<span class="c1">#sample size of 1,000 data points</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameter values</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1">#randomly generate feature values for three feature variables </span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1">#define the boosting model</span>
+<span class="n">boosting_model</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span>
+                                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">boosting_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#generate some test data</span>
+<span class="n">test_size</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">test_size</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">test_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#now we generate values for the probabilities of P(Y_i = 1) </span>
+<span class="n">z_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">pi_test</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z_test</span><span class="p">))</span>
+
+<span class="c1">#draw random Bernoulli numbers according to these probabilities</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pi_test</span><span class="p">)</span>
+
+<span class="c1">#determine the out of sample accuracy</span>
+<span class="n">oob_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">boosting_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1">#out of bag performance</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predictive accuracy for out of sample predictions: </span><span class="si">{</span><span class="n">oob_score</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#determine which feature is most important</span>
+<span class="n">feature_importances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">boosting_model</span><span class="o">.</span><span class="n">estimators_</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative importance of feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> in %: </span><span class="si">{</span><span class="n">feat</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">2.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictive accuracy for out of sample predictions: 0.6933
+Relative importance of feature 1 in %: 34.45
+Relative importance of feature 2 in %: 36.60
+Relative importance of feature 3 in %: 28.94
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02_02_blueprint_supervised_learning.html" title="previous page"><span class="section-number">2.2. </span>A blueprint for conducting supervised learning problems</a>
+    <a class='right-next' id="next-link" href="03_neural_networks.html" title="next page"><span class="section-number">3. </span>Neural Networks</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

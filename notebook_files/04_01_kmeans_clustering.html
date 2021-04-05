@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1. K-means Clustering &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.2. Principal Component Analysis" href="04_02_pca.html" />
+    <link rel="prev" title="4. Unsupervised Learning" href="04_unsupervised_learning.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04_unsupervised_learning.html">
+   4. Unsupervised Learning
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.1. K-means Clustering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_02_pca.html">
+     4.2. Principal Component Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/04_01_kmeans_clustering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/04_01_kmeans_clustering.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/04_01_kmeans_clustering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-it-works">
+   4.1.1. How it works
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assess-clustering-quality">
+   4.1.2. Assess clustering quality
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="k-means-clustering">
+<h1><span class="section-number">4.1. </span>K-means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">¶</a></h1>
+<p>K-means clustering is a popular method for dividing a collection of observations of multiple variables <span class="math notranslate nohighlight">\(\boldsymbol{X}_i\)</span> into <span class="math notranslate nohighlight">\(k\)</span> clusters. It is important to know, that the number of clusters has to be chosen by the user and that, originally, only metric variables should be used for the k-means algorithm. If your dataset contains categorical variables as well, you should search for further development of k-means, e.g., k-metroids or k-modes.</p>
+<div class="section" id="how-it-works">
+<h2><span class="section-number">4.1.1. </span>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+<p>If you recall the methods discussed in the supervised learning section, you notice that each model is estimated by optimizing an objective function. Typically, the function is defined as a loss function which is minimized. The smaller the loss function, the more estimated targets correspond to actual target observations. But for unsupervised, we do not have any targets, so what should we do? When are we satisfied with a certain partition?</p>
+<p>The aim for a well working clustering algorithm is to divide the dataset in different clusters such that observations within a cluster are more similar to each other than to observations from another cluster. How do we measure similarity?</p>
+<p>For k-means clustering, similarity between two observations <span class="math notranslate nohighlight">\(\boldsymbol{x_i}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{x_j}\)</span> is typically measured by their distance and quantified with Euclidean distance is used:</p>
+<div class="math notranslate nohighlight">
+\[
+d\left( \boldsymbol{x_i}, \boldsymbol{x_{j}} \right) = \sum_{q = 1}^{n} (x_{iq} - x_{jq})^2 = || \boldsymbol{x_i} - \boldsymbol{x_{j}} ||_2^2 
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x_i} =  (x_{i1}, ... , x_{in})^T,  \boldsymbol{x_j} =  (x_{j1}, ... , x_{jn})^T~~~ i,j = 1, ..., m
+\]</div>
+<p>Let us take a look at a small example, imagine we have two features <span class="math notranslate nohighlight">\(X_1, X_2\)</span> and three observations:</p>
+<table>
+    <tr> 
+        <th> $X_1$ <th/>
+        <th> $X_2$ <th/>
+    <tr/>
+    <tr>
+        <td> $0.5$ <td/>
+        <td> $2$   <td/>
+    <tr/>
+    <tr>
+        <td> $1$   <td/>
+        <td> $1$   <td/>
+    <tr/>
+    <tr>
+        <td> $2$   <td/>
+        <td> $5$   <td/>
+    <tr/>
+<table/><p><span class="math notranslate nohighlight">\(d\left( \boldsymbol{x}_1, \boldsymbol{x}_2\right) = (0.5 - 1)^2 + (2 - 1)^2 = 1.25\)</span></p>
+<p><span class="math notranslate nohighlight">\(d\left( \boldsymbol{x}_1, \boldsymbol{x}_3\right) = (0.5 - 2)^2 + (2 - 5)^2 = 11.25\)</span></p>
+<p><span class="math notranslate nohighlight">\(d\left( \boldsymbol{x}_2, \boldsymbol{x}_3\right) = (1 - 2)^2 + (1 - 5)^2 = 17\)</span></p>
+<p>If we illustrate this in two dimensional space, the following figure results. You can see that points with lower distance are closer to each other graphically.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">x_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Two dimensional space&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_4_0.png" src="../_images/04_01_kmeans_clustering_4_0.png" />
+</div>
+</div>
+<p>For very high dimensions, Euclidean distance may be replaced by other metrics, e.g. cosine similarity.</p>
+<p>Essential for assigning observations to a specific cluster is to define representatives for each cluster which we denote as <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_k\)</span>. You may picture each representative as the average member of a cluster.</p>
+<p>The overall goal when clustering data according to the k-means algorithm is to minimize within cluster variation by choosing cluster assignment <span class="math notranslate nohighlight">\(C(i) = k\)</span> and representatives <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_k\)</span>. The resulting objective is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\min \limits_{C_1, ..., C_k, \boldsymbol{\mu}_1, ..., \boldsymbol{\mu}_K}  \sum_{k = 1}^K \sum_{i = 1}^m d\left(\boldsymbol{x}_i, \boldsymbol{\mu}_k \right) \cdot \mathbb{I}_{i \in C_k} = \sum_{k = 1}^K \sum_{i = 1}^m  || \boldsymbol{x}_i, \boldsymbol{\mu}_k ||_2^2 \cdot \mathbb{I}_{i \in C_k}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbb{I}_{i \in C_k}\)</span> is just an indicator which is equal to one if observation <span class="math notranslate nohighlight">\(i\)</span> is assigned to cluster <span class="math notranslate nohighlight">\(k\)</span>, and zero otherwise. Fortunately, we do not need to care much about the choice for each <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_k\)</span>, because for each cluster, it holds that:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{\boldsymbol{x}_k} = \arg \min_\limits{\boldsymbol{\mu}_k} \sum_{i \in C_k} || \boldsymbol{x}_i - \boldsymbol{\mu}_k ||_2^2
+\]</div>
+<p>which means that the <strong>centroid</strong> for each cluster is best chosen by the average vector of observations in this cluster. To minimize the overall objective, one follows the following algorithm:</p>
+<ol class="simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(k\)</span> centroids and assign each observation to cluster <span class="math notranslate nohighlight">\(k\)</span> with least to distance to its centroid</p></li>
+<li><p>Repeat the following, until centroids do not change anymore or centroid changes stay below a specified threshold:</p>
+<ul class="simple">
+<li><p>Generate new centroids by averaging observations in the current cluster.</p></li>
+<li><p>Assign observations again by minimum distance to centroids.</p></li>
+</ul>
+</li>
+</ol>
+<p>This procedure will always converge (at leas to a local minimum), but is sensitive towards the initial centroids. This is why one may to repeat the estimation process with different starting values or directly use the “k-means++” scheme which is implemented in the sklearn k-means algorithm.</p>
+<p>Let us take a look at a fictional example. Assume we observe <span class="math notranslate nohighlight">\(500\)</span> observations of two features which are illustrated below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">euclidean</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;olivedrab&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;cadetblue&#39;</span><span class="p">,</span> <span class="s1">&#39;sandybrown&#39;</span><span class="p">]</span>
+
+<span class="n">features</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+                  <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
+                  <span class="n">centers</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+                  <span class="n">cluster_std</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+                  <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                  <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_6_0.png" src="../_images/04_01_kmeans_clustering_6_0.png" />
+</div>
+</div>
+<p>You can already guess the clusters just by looking. Assume, you choose to divide the data into four clusters. If we follow the k-means clustering algorithm a little bit, we would initialize four centroids by random guessing. Our first random guesses are illustrated by the colored crosses in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_size</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">0</span><span class="n">b649a40c636</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">cluster_size</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>On purpose, I have chosen not the most representative centroids in the beginning. Once, given the centroids, we assert each observation to the cluster with the smallest euclidean distance to the centroid. Cluster assertion is now highlighted by different colors in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">([</span><span class="n">euclidean</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">centroids</span><span class="p">]))</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">cluster</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">cluster</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centroids</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_10_0.png" src="../_images/04_01_kmeans_clustering_10_0.png" />
+</div>
+</div>
+<p>In the next step, we determine new centroids by averaging observations per cluster. The idea behind this step is to find the best representative for each cluster. You can compare the new representatives in the figure below with the initial guess. You hopefully agree, that just after one iteration, the new centroids seem to be a better fit.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroids</span><span class="p">)):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">i</span> 
+    <span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_12_0.png" src="../_images/04_01_kmeans_clustering_12_0.png" />
+</div>
+</div>
+<p>With better suited centroids, cluster assertion seems to improve.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">([</span><span class="n">euclidean</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">centroids</span><span class="p">]))</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">cluster</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">cluster</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centroids</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_14_0.png" src="../_images/04_01_kmeans_clustering_14_0.png" />
+</div>
+</div>
+<p>This example should just give you an impression, how k-means clustering works. In practice, we can use the sklearn k-means algorithm. Take a look at the example below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+
+<span class="c1">#define a color for each cluster</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;olivedrab&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;cadetblue&#39;</span><span class="p">,</span> <span class="s1">&#39;sandybrown&#39;</span><span class="p">]</span>
+
+<span class="c1">#simulate some data</span>
+<span class="n">features</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+                  <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
+                  <span class="n">centers</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+                  <span class="n">cluster_std</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+                  <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                  <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#define the algorithm wit four clusters</span>
+<span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1">#fit the model, this means cluster assertion is estimated</span>
+<span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="c1">#estimated cluster centroids are given by</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Centroids are: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">k_means</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1">#estimated labels for fitted data are given by</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estimated labels for the first five observations are: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+
+<span class="c1">#labels for new observations can be derived by using the predict method</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Visualized clusters are: &#39;</span><span class="p">)</span>
+<span class="c1">#visualize clustering</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span> <span class="o">==</span> <span class="n">cluster</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">cluster</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">k_means</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">k_means</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="n">cluster</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Centroids are: 
+[[-7.06163376 -6.91663151]
+ [-8.64343131  7.55417397]
+ [ 4.76279743  1.89919856]
+ [-2.65633217  9.08649366]]
+
+Estimated labels for the first five observations are: 
+[1 0 2 3 0]
+...
+Visualized clusters are: 
+</pre></div>
+</div>
+<img alt="../_images/04_01_kmeans_clustering_16_1.png" src="../_images/04_01_kmeans_clustering_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="assess-clustering-quality">
+<h2><span class="section-number">4.1.2. </span>Assess clustering quality<a class="headerlink" href="#assess-clustering-quality" title="Permalink to this headline">¶</a></h2>
+<p>As long as we stay in two or three dimensional space, visualizing cluster assertion is probably one of the best methods to get an impression how well clustering works. However, for higher dimensions, we either need to reduce dimensionality with appropriate reduction techniques (see the next section) upfront or we can use numerical quantifications which indicated the overall quality of cluster separation. Regarding the latter, we may include the <strong>silhouette score</strong> <span class="math notranslate nohighlight">\(S(\boldsymbol{x_i}) \in \left[-1, 1\right]\)</span>. What is does, is to compare average dissimilarity from an observation <span class="math notranslate nohighlight">\(i\)</span> to the members in its own cluster in comparison to the members in the neighboring cluster.</p>
+<p>For an observation <span class="math notranslate nohighlight">\(i\)</span>, we derive average within cluster dissimilarity by:</p>
+<div class="math notranslate nohighlight">
+\[
+a(i) = \frac{1}{|\lbrace j: j \in C_k \rbrace|} \sum_{j \in C_k, i \neq j} d(\boldsymbol{x}_i, \boldsymbol{x}_j)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\lbrace j: j \in C_k \rbrace|\)</span> is the number of cluster members other than <span class="math notranslate nohighlight">\(i\)</span>. In the next step, average dissimilarity to other clusters, i.e., to members in other clusters is derived. This is conducted for each cluster, separately, and the cluster with the smallest average dissimilarity is used.</p>
+<div class="math notranslate nohighlight">
+\[
+b(i) = \min_\limits{l} \frac{1}{|\lbrace j: j \in C_l \rbrace|} \sum_{j \in C_l, i \neq j} d(\boldsymbol{x}_i, \boldsymbol{x}_j)
+\]</div>
+<p>The silhouette score for observation <span class="math notranslate nohighlight">\(i\)</span> is now defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\boldsymbol{x_i}) = \frac{b(i) - a(i)}{\max \lbrace a(i), b(i) \rbrace}
+\]</div>
+<p>A value close to <span class="math notranslate nohighlight">\(1\)</span> speaks for a very distinct separation of observation <span class="math notranslate nohighlight">\(i\)</span> to the remaining clusters, while a value close to <span class="math notranslate nohighlight">\(-1\)</span> indicates the opposite as observation <span class="math notranslate nohighlight">\(i\)</span> is on average even closer to members from another cluster.</p>
+<p>In order to get an overview over all observations, we may average silhouette scores:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{S}(\boldsymbol{x_i}) = \sum_i S(\boldsymbol{x_i})
+\]</div>
+<p>We can use <span class="math notranslate nohighlight">\(\bar{S}(\boldsymbol{x_i})\)</span> as a direct cluster quality measure and, for instance, choose the number of clusters according to the highest value for <span class="math notranslate nohighlight">\(\bar{S}(\boldsymbol{x_i})\)</span>. For our example, this could be achieved with the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="c1">#define a range of clusters you want to take into account</span>
+<span class="n">n_k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+
+<span class="c1">#empty list for avg. silhouette scores</span>
+<span class="n">avg_silhouette</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="c1">#given a number of clusters estimate them with k-means</span>
+    <span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="c1">#derive avg. silhouette scores</span>
+    <span class="n">avg_silhouette</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span><span class="p">))</span>
+    
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">avg_silhouette</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The avg. Silhouette score for </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> clusters equals: </span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The best cluster number according to the avg. Silhouette score is </span><span class="si">{</span><span class="n">clusters</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">avg_silhouette</span><span class="p">)]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The avg. Silhouette score for 10 clusters equals: 0.57
+The avg. Silhouette score for 10 clusters equals: 0.71
+The avg. Silhouette score for 10 clusters equals: 0.69
+The avg. Silhouette score for 10 clusters equals: 0.61
+The avg. Silhouette score for 10 clusters equals: 0.50
+The avg. Silhouette score for 10 clusters equals: 0.40
+The avg. Silhouette score for 10 clusters equals: 0.34
+The avg. Silhouette score for 10 clusters equals: 0.35
+The avg. Silhouette score for 10 clusters equals: 0.36
+
+The best cluster number according to the avg. Silhouette score is 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Furthermore, a more detailed analysis for clustering quality may be given by the following figures. The code to generate the figures is hidden below. In each figure, from left to right for each cluster, the Silhouette score for each observation is plotted. This can reveal certain imbalances within clusters regarding their overall Silhouette scores. For this example, the figures confirm what is already provided by the average Silhouette score, that is, choosing three or four clusters might lead to the most distinct division of the data set.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
+
+<span class="c1">#define a function which plots silhouette scores for a given k-means clustering model</span>
+<span class="k">def</span> <span class="nf">plot_silhouettes</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k_means</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">features</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span>
+
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">x_split</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_clusters</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_split</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">silhouette_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">x_lower</span> <span class="o">=</span> <span class="n">x_split</span>
+
+    <span class="n">sample_silhouette_scores</span> <span class="o">=</span> <span class="n">silhouette_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">):</span>
+
+        <span class="n">ith_cluster_silhouette_scores</span> <span class="o">=</span> <span class="n">sample_silhouette_scores</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">ith_cluster_silhouette_scores</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">ith_size</span> <span class="o">=</span> <span class="n">ith_cluster_silhouette_scores</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">x_upper</span> <span class="o">=</span> <span class="n">x_lower</span> <span class="o">+</span> <span class="n">ith_size</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_lower</span><span class="p">,</span> <span class="n">x_upper</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> 
+                        <span class="n">ith_cluster_silhouette_scores</span><span class="p">)</span>
+
+        <span class="n">x_lower</span> <span class="o">=</span> <span class="n">x_upper</span> <span class="o">+</span> <span class="n">x_split</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette score&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Avg. Silhouette score: </span><span class="si">{</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="n">plot_silhouettes</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k_means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_21_0.png" src="../_images/04_01_kmeans_clustering_21_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="n">plot_silhouettes</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k_means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_22_0.png" src="../_images/04_01_kmeans_clustering_22_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="n">plot_silhouettes</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k_means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_01_kmeans_clustering_23_0.png" src="../_images/04_01_kmeans_clustering_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04_unsupervised_learning.html" title="previous page"><span class="section-number">4. </span>Unsupervised Learning</a>
+    <a class='right-next' id="next-link" href="04_02_pca.html" title="next page"><span class="section-number">4.2. </span>Principal Component Analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

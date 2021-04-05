@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2. Principal Component Analysis &#8212; Financial Data Analytics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="4.1. K-means Clustering" href="04_01_kmeans_clustering.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Financial Data Analytics</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_introduction.html">
+   What is financial data analytics
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_preliminiaries.html">
+   1. Preliminaries in Programing, Math and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_supervised_learning.html">
+   2. Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_neural_networks.html">
+   3. Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04_unsupervised_learning.html">
+   4. Unsupervised Learning
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_01_kmeans_clustering.html">
+     4.1. K-means Clustering
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.2. Principal Component Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook_files/04_02_pca.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebook_files/04_02_pca.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebook_files/04_02_pca.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-components-are-eigenvectors">
+   4.2.1. Principal components are eigenvectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-is-equivalent-to-autoencoders">
+   4.2.2. PCA is equivalent to autoencoders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-do-with-reduced-dimensions">
+   4.2.3. What to do with reduced dimensions
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="principal-component-analysis">
+<h1><span class="section-number">4.2. </span>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Principal component analysis (PCA) is an important dimensionality reduction technique which you will find in many textbooks. Starting with a data set of <span class="math notranslate nohighlight">\(m\)</span> observations with <span class="math notranslate nohighlight">\(n\)</span> features, the task of PCA is to find a data set with less features <span class="math notranslate nohighlight">\(d &lt; n\)</span> which keeps as much information and structure as possible, but looses as much redundancy as possible. The technique to solve this task is given by linear algebra techniques, i.e., singular value and eigenvalue decomposition, respectively. In my opinion, it is interesting to understand the concept of PCA from two perspectives. (1) <strong>principal components</strong> are axes along variance of the data, (2) principal components minimize the <strong>reproduction error</strong>.</p>
+<div class="section" id="principal-components-are-eigenvectors">
+<h2><span class="section-number">4.2.1. </span>Principal components are eigenvectors<a class="headerlink" href="#principal-components-are-eigenvectors" title="Permalink to this headline">¶</a></h2>
+<p>Let us first take a look at the first way. Assume we start with a data set containing of two features as shown below. We observe, both variables seem to exhibit high dependencies which indicates high redundancy. Spoken more easily, if we know the observation of <span class="math notranslate nohighlight">\(X_1\)</span>, we are almost sure about the value of <span class="math notranslate nohighlight">\(X_2\)</span> such that <span class="math notranslate nohighlight">\(X_2\)</span> does not provide that much of new information. Assuming linear dependence, the degree of redundancy is strictly related to <strong>covariance</strong> or in a more standardized form to <strong>correlation</strong>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">x1</span><span class="p">,</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">x2</span><span class="p">))</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_std</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_1_0.png" src="../_images/04_02_pca_1_0.png" />
+</div>
+</div>
+<p>So let us determine the covariance matrix for the data from above.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cov_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cov_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.38076395 0.44131409]
+ [0.44131409 0.29997762]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>On the diagonal, you can observe variances for <span class="math notranslate nohighlight">\(X_1, X_2\)</span> and covariance is given by the off-diagonal element. Principal components can be interpreted as axes which account for the highest amount of variance in the data by decreasing order. So take a look at the figure above. It seems, a higher degree of variability is given by <span class="math notranslate nohighlight">\(X_1\)</span>. Its observations are approximately in the range <span class="math notranslate nohighlight">\([-4.5, 4.5]\)</span>, while values for <span class="math notranslate nohighlight">\(X_2\)</span> are in the range <span class="math notranslate nohighlight">\([-2.5, 2.5]\)</span>. This information is also revealed by the covariance matrix, exhibiting an estimated variance of <span class="math notranslate nohighlight">\(1.38\)</span> for <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(0.30\)</span> for <span class="math notranslate nohighlight">\(X_2\)</span>. Now, assume you should draw one line along the highest variability of the blue dots. Something as can be seen in the figure below may result.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="n">coeff</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">coeff</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1">#slope2 = coeff[0,1] / coeff[1, 1]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">slope</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="c1">#plt.plot(np.linspace(-4.5, 4.5), np.linspace(-4.5, 4.5) * slope2, color = &#39;red&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_5_0.png" src="../_images/04_02_pca_5_0.png" />
+</div>
+</div>
+<p>This is what is meant by “the axis which accounts for the highest variability” and is a possibility to visualize the first principal component. But how is this related to eigenvalues? Assume we draw a vector starting from the origin in the scatter plot. It can be any random vector, in the figure below, we choose <span class="math notranslate nohighlight">\(\boldsymbol{x} = (-1.5, 2)^T\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+
+<span class="n">start_vec</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_7_0.png" src="../_images/04_02_pca_7_0.png" />
+</div>
+</div>
+<p>Now, if we multiply the covariance matrix of <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> with this vector, take a look what happens:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+1.38 &amp; 0.44 \\
+0.44 &amp; 0.30 \\
+\end{pmatrix}
+\begin{pmatrix}
+-1.50  \\
+ 2.00  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1.19  \\
+-0.06  \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>A new vector is generated which is drawn into the direction of the highest variance. This can be seen in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+
+<span class="n">start_vec</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">start_vec</span> <span class="o">=</span> <span class="n">cov_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">start_vec</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_9_0.png" src="../_images/04_02_pca_9_0.png" />
+</div>
+</div>
+<p>If we repeat this step a few times, you can observe that the vector gets more and more drawn into the direction of the axis along the highest variability. While the direction of the vector seems not to change anymore after a few multiplications, the vector itself just gets longer and longer by repeatedly multiplying itself with the covariance matrix. One last time, observe this in the figure below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+
+<span class="n">start_vec</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">start_vec</span> <span class="o">=</span> <span class="n">cov_mat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">start_vec</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_11_0.png" src="../_images/04_02_pca_11_0.png" />
+</div>
+</div>
+<p>The behavior from above is exactly what eigenvectors are. Recall the definition: the eigen decomposition of a square matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} \in \mathbb{R}^{n \times n}\)</span> depends on <strong>eigenvalues</strong> and <strong>eigenvectors</strong> of if. If a number <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span> exists such that:</p>
+<div class="math notranslate nohighlight">
+\[ \boldsymbol{A} \boldsymbol{x} = \lambda \boldsymbol{x} \]</div>
+<p>then we call <span class="math notranslate nohighlight">\(\lambda\)</span> eigenvalue and <span class="math notranslate nohighlight">\(\boldsymbol{x} \in \mathbb{R}^n\)</span> the eigenvector. In our case, <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span> represents the covariance matrix and our interest lies in the identification <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. The eigen decomposition states that multiplying a matrix with the vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> is the same as scaling the vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> by some scaling factor <span class="math notranslate nohighlight">\(\lambda\)</span>. By means of scaling, only the length of the vector is changed, but the direction stays the same.</p>
+<p>Subsuming, the (first) principal component is the axis which captures most of the variability of the data. Multiplying some vector with the covariance matrix draws it into the direction with the highest variability. Once the vector is drawn along the direction of the highest variability, it only changes its length if we keep on multiplying it with the covariance matrix. This is equivalent with finding an eigenvector of the covariance matrix and this is why principal components are eigenvectors. So far, we have only looked at the first principal component. The second principal component is the axis which captures the most variability after the first principal component. In general, in <span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n}\)</span>, we have a maximum of <span class="math notranslate nohighlight">\(n\)</span> eigenvalues with <span class="math notranslate nohighlight">\(n\)</span> eigenvectors. For the latter to be true, we must add that we normalize eigenvectors to reach a unique representation. The eigenvector associated with the highest eigenvalue is the principal component related to the highest variability, the eigenvector associated with the second highest eigenvalue is the principal component related to the second highest variability and so on. Another useful property which can be deduced from eigenvalues is the <strong>ratio of variability explained</strong> by the principal component. Dividing the eigenvalue through the sum of all eigenvalues delivers us this information.</p>
+<p>Furthermore, principal components are orthogonal, which means independent and standing right-angled onto each other. Moreover, due to normalization they are orthonormal, exhibiting a norm (vector length) equal to one. Please also note, that data is assume to be mean-standardized, which means each features is shifted by its mean or the estimate, respectively, <span class="math notranslate nohighlight">\((x_{ij} - \bar{x}_j)\)</span>.</p>
+<p>This is all pretty technical, but what you should notice and remind is that principal components help to reduce the dimensionality and keep as much information and structure as possible. How can we reduce the dimensionality? Once, principal components are found, they can be used to project data into lower dimensional spaces. For instance, in our example, we are in two dimensional space. The following code can be used to derive the principal components.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1">#the first row represents the first principal component, the second row the second principal component</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.94194932,  0.33575509],
+       [-0.33575509,  0.94194932]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To project two dimensional space into one dimensional space, we multiply each row in the data set with the first principal component <span class="math notranslate nohighlight">\(\boldsymbol{p}_1 \in \mathbb{R}^{2 \times 1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{z} = \boldsymbol{X} \boldsymbol{p}_1
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The first five observations from the one dimensional projection are:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The first five observations from the one dimensional projection are:
+[ 0.78213991 -0.08463611  0.79314054  1.80523984 -0.23630876]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To better understand what is meant by keeping as much information and structure as possible, take a look at the figure below. In the left you can see the original data in two dimensional space. Three arbitrary observations are marked by color points. In the right, you can see the one dimensional projection with the corresponding marked points. While the location of the points is somewhere else, the fact that the purple and black point are closer to each other than to the green point in two dimensions is kept in one dimension as well.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;silver&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;olivedrab&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;2D space&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)),</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;silver&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">200</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">400</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;olivedrab&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Observation number&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Z$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;1D projection&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_17_0.png" src="../_images/04_02_pca_17_0.png" />
+</div>
+</div>
+<p>But how many principal components should we use in practice? Or, to which dimension should we project the original data. As principal components aim to retain and by this way explain variability in the data, the ratio of explained variance is used for answering these questions. If we use the scipy package for PCA, we can retrieve this information in the following way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.91511337, 0.08488663])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see, for our example approximately <span class="math notranslate nohighlight">\(91.5%\)</span> of the overall variability in the data is explained by the first principal component. In real life applications, we will work with a multitude of features. In practice, one uses the number of principal components, such that a certain ratio of explained variability is exceeded. Typical values are <span class="math notranslate nohighlight">\(0.90\)</span> or <span class="math notranslate nohighlight">\(0.95\)</span>.</p>
+</div>
+<div class="section" id="pca-is-equivalent-to-autoencoders">
+<h2><span class="section-number">4.2.2. </span>PCA is equivalent to autoencoders<a class="headerlink" href="#pca-is-equivalent-to-autoencoders" title="Permalink to this headline">¶</a></h2>
+<p>So far, you did not hear anything about autoencoders. While their general functionality is beyond the scope of PCA, a special form of autoencoder is nearly the same as PCA. In my opinion, the idea of dimensionality reduction is easier to understand in this way. At the beginning of this chapter, I already wrote, that we can understand the concept or PCA by minimizing the reproduction error without explaining what this is.</p>
+<p>Imagine, we want to reduce the two dimensional data set from our example into a one dimensional data set, but with the condition that the one dimensional data set keeps as much information from the original data set as possible. With other words, the variable from the one dimensional data set is supposed to know as much as possible about variables in the original data set. Let us define a composition <span class="math notranslate nohighlight">\(g \circ f: \mathbb{R}^2 \to \mathbb{R}^2\)</span> of two linear (or affine) functions <span class="math notranslate nohighlight">\(f: \mathbb{R}^2 \to \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f: \mathbb{R} \to \mathbb{R}^2\)</span> with:</p>
+<div class="math notranslate nohighlight">
+\[
+f(\boldsymbol{x}_i) = \boldsymbol{x}_i^T \boldsymbol{w}_f = x_{i1} w_{1f} + x_{i2} w_{2f} = z_i
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+g(z_i) = z_i \boldsymbol{w}_g^T = z_i w_{1g} + z_i w_{2g}
+\]</div>
+<p>and finally, the composition:</p>
+<div class="math notranslate nohighlight">
+\[
+g \circ f(\boldsymbol{x}_i) =  \boldsymbol{x}_i^T \boldsymbol{w}_f \boldsymbol{w}_g^T = \boldsymbol{\hat{x}}_i
+\]</div>
+<p>The reproduction error for an observation is given by <span class="math notranslate nohighlight">\(|| \boldsymbol{x}_i - \boldsymbol{\hat{x}}_i ||_2^2\)</span>. And for all observation, the average reproduction error is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{m} \sum_i || \boldsymbol{x}_i - \boldsymbol{\hat{x}}_i ||_2^2
+\]</div>
+<p>Minimizing this reproduction error leads to a variable <span class="math notranslate nohighlight">\(Z\)</span> which best explains the variation in the original data <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>. Generalizing this into arbitrary dimensions leads to a <strong>linear autoencoder</strong>. An autoencoder consists of an encoder and a decoder. The encoder is the function <span class="math notranslate nohighlight">\(f\)</span> in our example, and, the decoder is given by <span class="math notranslate nohighlight">\(g\)</span>. Basically, the encoder projects data to the lower dimensional space and the decoder projects it back. However, as long as lower dimensions are used than provided by input space, a perfect recreation of the original data is not possible which causes a reproduction error. But, by minimizing this error, most relevant information in the original data is transmitted by <span class="math notranslate nohighlight">\(Z\)</span>. By construction, linear autoencoders are neural networks. While for supervised learning problems, the output layer was used and exhibited a dimensionality equal to the one of the target variable, we define three layers in case of the linear autoencoder. The input and output layer must exhibit identical dimensionality as, the degree of dimensionality reduction is defined by the number of neurons in the hidden layer. An illustration for our example is given below:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnv</span> <span class="kn">import</span> <span class="n">NNV</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">layersList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="s2">&quot;Input</span><span class="se">\n</span><span class="s2">layer&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="s2">&quot;Reduced</span><span class="se">\n</span><span class="s2">dimension&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="s2">&quot;Output</span><span class="se">\n</span><span class="s2">layer&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">NNV</span><span class="p">(</span><span class="n">layersList</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_22_0.png" src="../_images/04_02_pca_22_0.png" />
+</div>
+</div>
+<p>As autoencoders are a form of neural networks, we can use the tensorflow library to define and estimating. Convince yourself with the code below, that this task is rather easy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="c1">#to make it clear we first define the encoder as one layer with 2D input and 1D output</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">use_bias</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1">#the 1D output from the encoder is fed to the decoder which projects it back to 2D</span>
+<span class="n">decoder</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">use_bias</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1">#the overall autoenoder combines encoding and decoding</span>
+<span class="n">autoencoder</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">])</span>
+
+<span class="c1">#as we know it from supervised learning, we compile the model</span>
+<span class="c1">#defining the mean squared error to minimize reproduction error</span>
+<span class="n">autoencoder</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="n">optimizer</span> <span class="o">=</span> <span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+
+<span class="c1">#fit the model</span>
+<span class="n">autoencoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Weights of the encoder:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">autoencoder</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Weights of the decoder:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">autoencoder</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+<span class="c1">#with estimated weights, the hidden neurons from the encoder are the 1D projections</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weights of the encoder:
+[[-0.6463758 ]
+ [-0.03883169]]
+
+Weights of the decoder:
+[[-1.5256469  -0.48859298]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As for PCA, we can compare the original representation and its one dimensional projection. In the Figure below, you can see that this is nearly identical to what we have seen for the PCA.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;silver&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;olivedrab&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_2$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;2D space&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)),</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;silver&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">200</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">z</span><span class="p">[</span><span class="mi">400</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;olivedrab&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Observation number&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Z$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;1D projection&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_02_pca_26_0.png" src="../_images/04_02_pca_26_0.png" />
+</div>
+</div>
+<p>What are the differences between linear autoencoders and PCA? For PCA, usually, all principal components are derived first and the amount of components to use is chosen according to the ratio of explained variability. For the linear autoencoder, we must decide the dimensionality reduction up front and estimate different models, if we want to change this dimensionality. Furthermore, principal components are orthonormal. No such requirements are not made for the weights of the autoencoder.</p>
+<p>As long as we only use three layers and linear activation functions, autoencoders are equivalent to PCA. Generalizing our example, the linear autoencoder is a composition <span class="math notranslate nohighlight">\(g \circ f: \mathbb{R}^n \to \mathbb{R}^n\)</span> of two linear functions <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \to \mathbb{R}^d\)</span>, <span class="math notranslate nohighlight">\(f: \mathbb{R}^d \to \mathbb{R}^n\)</span> with weights <span class="math notranslate nohighlight">\(\boldsymbol{W}_f \in \mathbb{R}^{n \times d}, \boldsymbol{W}_g \in \mathbb{R}^{d \times n}\)</span>. The weights are derived by minimization:</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\boldsymbol{\hat{W}}_f , \boldsymbol{\hat{W}}_g \right) = \arg \min_\limits{\boldsymbol{W}_f, \boldsymbol{W}_g} \frac{1}{m} \sum_i || \boldsymbol{x}_i - \left( \boldsymbol{x}_i^T \cdot \boldsymbol{W}_f \cdot \boldsymbol{W}_g \right)^T  ||_2^2
+\]</div>
+<p>However, as we use neural networks, the concept of autoencoders can be made more flexible by using more layers in combination with non-linear activation functions. This is called stacked autoencoders, but is beyond the scope of the relation to PCA. The more flexible autoencoders become, the more important it is to include aspects of over fitting in the model.</p>
+<p>Yet, discussing autoencoders at this point is meant to make clear that dimensionality reduction can be seen as a reproduction task which tries to replicate its original data by fewer features. Furthermore, it is one example why neural networks are not exclusively valuable to supervised learning problems and can be used for unsupervised tasks as well.</p>
+</div>
+<div class="section" id="what-to-do-with-reduced-dimensions">
+<h2><span class="section-number">4.2.3. </span>What to do with reduced dimensions<a class="headerlink" href="#what-to-do-with-reduced-dimensions" title="Permalink to this headline">¶</a></h2>
+<p>Applications of the techniques presented here are manifold. First, by reducing dimensions, we isolate redundant and useless information for methods which might follow in the analysis. This may improve supervised learning or unsupervised learning tasks which use the lower dimensional feature space. Another application is to visualize higher dimensional data. Assume, you want to illustrate observations which exhibit more then three dimensions. This is not possible without projecting the data back to two or three dimensions. A further applications which comes in my mind when treating dimensionality reduction as a reproduction problem is the multivariate identification of outliers. Reproductions for common observations are likely to be close to their original. The higher the reproduction error, the more it indicates that this observation is more distinct to typical (systematic) behavior that is represented by the latent lower dimensional projections. We will take a closer look at these applications in the case studies section.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook_files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04_01_kmeans_clustering.html" title="previous page"><span class="section-number">4.1. </span>K-means Clustering</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ralf Kellner<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
